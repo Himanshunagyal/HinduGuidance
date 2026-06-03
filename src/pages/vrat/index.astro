@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { vrats } from '../../content/vrats/data';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Hindu Vrat Calendar 2025",
+  "description": "Complete list of Hindu fasts and vrats with dates and rules",
+  "itemListElement": vrats.map((v, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "url": `https://panchangseva.in/vrat/${v.slug}`,
+    "name": v.name
+  }))
+};
+---
+
+<BaseLayout
+  title="Hindu Vrat Calendar 2025 - All Fasting Dates & Rules"
+  description="Complete Hindu Vrat Calendar 2025. Find dates and rules for Ekadashi, Pradosh, Navratri, Sankashti Chaturthi, Somvar Vrat and all major Hindu fasts."
+  keywords="vrat calendar 2025, ekadashi dates 2025, pradosh dates, navratri 2025, hindu fasting calendar, vrat list"
+  schema={schema}
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-saffron-900 to-darkbrown text-cream py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Complete Guide</p>
+      <h1 class="font-display text-5xl font-semibold mb-4">Hindu Vrat Calendar 2025</h1>
+      <p class="text-cream/70 font-body text-lg max-w-2xl mx-auto">
+        Dates, rules, and complete puja vidhi for all major Hindu fasts. Follow the path of dharma with our authentic vrat guides.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {vrats.map(vrat => (
+        <a href={`/vrat/${vrat.slug}`} class="card-sacred p-6 group">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-4xl">{vrat.icon}</span>
+            <span class="text-xs font-sans text-saffron-600 bg-saffron-50 px-3 py-1 rounded-full border border-saffron-100">{vrat.frequency}</span>
+          </div>
+          <h2 class="font-display text-xl text-darkbrown font-semibold mb-1 group-hover:text-saffron-600 transition-colors">{vrat.name}</h2>
+          <p class="text-xs text-gold font-sans tracking-wide mb-3">Dedicated to {vrat.deity}</p>
+          <p class="text-sm text-darkbrown/60 font-body leading-relaxed mb-4">{vrat.shortDesc}</p>
+          
+          <div class="border-t border-gold/15 pt-3">
+            <p class="text-xs font-sans text-darkbrown/50 mb-1">Upcoming Dates:</p>
+            <div class="flex flex-wrap gap-1">
+              {vrat.nextDates.slice(0, 2).map(d => (
+                <span class="text-xs bg-saffron-50 text-saffron-700 px-2 py-0.5 rounded-sm border border-saffron-100 font-sans">{d}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

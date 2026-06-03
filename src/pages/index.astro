@@ -1,11 +1,162 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { vrats } from '../content/vrats/data';
+
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "PanchangSeva - Hindu Vrat Calendar, Muhurat & AI Pandit",
+  "description": "Find Vrat dates, auspicious Muhurat timings, and get answers from our AI Pandit.",
+  "url": "https://panchangseva.in"
+};
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="PanchangSeva - Hindu Vrat Calendar, Muhurat & AI Pandit"
+  description="Your complete Hindu spiritual guide. Find Ekadashi, Pradosh, Navratri vrat dates and rules, auspicious muhurat timings, and get answers from our AI Pandit."
+  schema={homepageSchema}
+>
+  <Header />
+
+  <section class="relative overflow-hidden bg-gradient-to-b from-darkbrown via-deepred to-saffron-900 text-cream min-h-screen flex items-center">
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, rgba(201,168,76,0.8) 1px, transparent 0); background-size: 32px 32px;"></div>
+    <div class="absolute top-20 right-10 w-72 h-72 rounded-full border border-gold/10 opacity-30 pointer-events-none"></div>
+    <div class="absolute -bottom-20 -left-20 w-96 h-96 rounded-full border border-saffron-400/10 opacity-20 pointer-events-none"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-gold/70 font-sans text-sm tracking-[0.3em] uppercase mb-4 fade-in-up">|| Shubham Bhavatu ||</p>
+        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6 fade-in-up delay-100">
+          Your Digital<br/>
+          <span class="text-gold-shimmer font-semibold">Pandit & Guide</span>
+        </h1>
+        <p class="text-cream/70 text-lg font-body mb-8 leading-relaxed max-w-lg fade-in-up delay-200">
+          Find auspicious Vrat dates, Muhurat timings, and get answers to your spiritual questions from our learned AI Panditji — rooted in Vedic wisdom.
+        </p>
+        <div class="flex flex-wrap gap-3 fade-in-up delay-300">
+          <a href="/vrat" class="bg-gradient-to-r from-saffron-500 to-saffron-600 text-white font-sans font-medium px-6 py-3 rounded-sm shadow-lg hover:shadow-saffron-400/30 transition-all hover:-translate-y-0.5">
+            View Vrat Calendar
+          </a>
+          <a href="/pandit" class="border border-gold/40 text-gold font-sans font-medium px-6 py-3 rounded-sm hover:bg-gold/10 transition-all">
+            Ask Panditji
+          </a>
+        </div>
+        <div class="flex items-center gap-6 mt-10 fade-in-up delay-300">
+          <div class="text-center">
+            <p class="text-gold font-display text-2xl font-semibold">50+</p>
+            <p class="text-cream/50 text-xs font-sans">Vrat Guides</p>
+          </div>
+          <div class="w-px h-8 bg-gold/20"></div>
+          <div class="text-center">
+            <p class="text-gold font-display text-2xl font-semibold">365</p>
+            <p class="text-cream/50 text-xs font-sans">Days of Guidance</p>
+          </div>
+          <div class="w-px h-8 bg-gold/20"></div>
+          <div class="text-center">
+            <p class="text-gold font-display text-2xl font-semibold">AI</p>
+            <p class="text-cream/50 text-xs font-sans">Pandit 24x7</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-sacred p-6 rounded-sm hidden md:block fade-in-up delay-200">
+        <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gold/20">
+          <div class="w-10 h-10 rounded-full bg-saffron-100 flex items-center justify-center">
+            <span class="text-xl">🕉️</span>
+          </div>
+          <div>
+            <p class="font-display text-darkbrown font-semibold">Pandit Shivananda</p>
+            <p class="text-xs text-saffron-600 font-sans">AI Vedic Pandit • Online</p>
+          </div>
+          <div class="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+        <div class="space-y-3 mb-4">
+          <div class="chat-pandit p-3 rounded-sm text-sm text-darkbrown/80 font-body">
+            Pranam! I am Pandit Shivananda. How may I guide you on your dharmic path today?
+          </div>
+          <div class="chat-user p-3 rounded-sm text-sm text-darkbrown/80 text-right font-body">
+            Panditji, when is the next Ekadashi and what can I eat?
+          </div>
+          <div class="chat-pandit p-3 rounded-sm text-sm text-darkbrown/80 font-body">
+            Vatsa, the next Ekadashi falls on June 6th. On this sacred day, grains are forbidden. You may take phalahar — fruits, milk, nuts and sago...
+          </div>
+        </div>
+        <a href="/pandit" class="block text-center bg-saffron-50 text-saffron-700 text-sm font-sans font-medium py-2.5 rounded-sm border border-saffron-200 hover:bg-saffron-100 transition-colors">
+          Start Conversation →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-2xl mx-auto px-4 py-8">
+    <div class="divider-om">
+      <span class="text-gold font-sans text-xs tracking-widest">|| Shri Ganeshaya Namah ||</span>
+    </div>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-4xl text-darkbrown font-semibold mb-3">Sacred Tools for Your Spiritual Journey</h2>
+      <p class="text-darkbrown/60 font-body text-lg">Everything you need, rooted in authentic Vedic tradition</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        { icon: "📅", title: "Vrat Calendar", desc: "Complete fasting schedule for the year — Ekadashi, Pradosh, Navratri, Sankashti and more with detailed rules.", href: "/vrat" },
+        { icon: "⏰", title: "Muhurat Finder", desc: "Find the most auspicious timing for your ceremonies — marriage, grihapravesh, naming ceremony, and more.", href: "/muhurat" },
+        { icon: "🙏", title: "AI Pandit", desc: "Ask our Vedic AI Panditji anything — puja vidhi, mantra meanings, vrat doubts, or spiritual guidance.", href: "/pandit" }
+      ].map(f => (
+        <a href={f.href} class="card-sacred p-7 group">
+          <div class="text-4xl mb-4">{f.icon}</div>
+          <h3 class="font-display text-xl text-darkbrown font-semibold mb-2 group-hover:text-saffron-600 transition-colors">{f.title}</h3>
+          <p class="text-darkbrown/60 font-body text-sm leading-relaxed">{f.desc}</p>
+          <p class="mt-4 text-saffron-600 text-sm font-sans font-medium">Explore →</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-gradient-to-b from-cream to-saffron-50/30 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="font-display text-4xl text-darkbrown font-semibold">Popular Vrats</h2>
+          <p class="text-darkbrown/60 font-body mt-1">Detailed guides for the most observed fasts</p>
+        </div>
+        <a href="/vrat" class="text-saffron-600 font-sans text-sm font-medium hover:underline">View All →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {vrats.map(vrat => (
+          <a href={`/vrat/${vrat.slug}`} class="card-sacred p-5 group">
+            <div class="flex justify-between items-start mb-3">
+              <span class="text-3xl">{vrat.icon}</span>
+              <span class="text-xs font-sans text-saffron-600 bg-saffron-50 px-2 py-1 rounded-sm border border-saffron-100">{vrat.frequency}</span>
+            </div>
+            <h3 class="font-display text-lg text-darkbrown font-semibold mb-1 group-hover:text-saffron-600 transition-colors">{vrat.name}</h3>
+            <p class="text-xs text-gold font-sans mb-2">{vrat.deity}</p>
+            <p class="text-sm text-darkbrown/60 font-body leading-relaxed">{vrat.shortDesc.substring(0, 100)}...</p>
+            <p class="mt-3 text-xs font-sans text-darkbrown/50">Next: <span class="text-saffron-600 font-medium">{vrat.nextDates[0]}</span></p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 py-20 text-center">
+    <span class="text-5xl block mb-6">🕉️</span>
+    <h2 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold mb-4">
+      Spiritual Doubts?<br/>Ask Panditji.
+    </h2>
+    <p class="text-darkbrown/60 font-body text-lg mb-8 max-w-lg mx-auto">
+      Our AI Pandit is trained in Vedic scriptures, Puranas, and dharmic traditions. Ask anything — any time.
+    </p>
+    <a href="/pandit" class="inline-flex items-center gap-3 bg-gradient-to-r from-darkbrown to-deepred text-cream font-sans font-medium px-8 py-4 rounded-sm shadow-xl hover:shadow-darkbrown/30 hover:-translate-y-0.5 transition-all">
+      Begin Your Conversation
+    </a>
+    <p class="mt-4 text-xs text-darkbrown/40 font-sans">Free to use • No registration required</p>
+  </section>
+
+  <Footer />
+</BaseLayout>

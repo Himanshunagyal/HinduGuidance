@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const muhurats = [
+  { name: "Vivah Muhurat", icon: "💍", desc: "Marriage ceremony", color: "saffron" },
+  { name: "Grihapravesh", icon: "🏠", desc: "New home entry", color: "gold" },
+  { name: "Namakarana", icon: "🍼", desc: "Naming ceremony", color: "saffron" },
+  { name: "Mundan", icon: "✂️", desc: "First head shaving", color: "gold" },
+  { name: "Vyapar Aarambh", icon: "🏪", desc: "Business inauguration", color: "saffron" },
+  { name: "Yatra", icon: "✈️", desc: "Auspicious travel", color: "gold" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Muhurat Finder - Auspicious Hindu Timings 2025",
+  "description": "Find auspicious muhurat for marriage, grihapravesh, naming ceremony and all Hindu occasions in 2025."
+};
+---
+
+<BaseLayout
+  title="Muhurat Finder 2025 - Auspicious Hindu Timings"
+  description="Find the most auspicious muhurat for marriage, grihapravesh, business opening, naming ceremony and more. Vedic timing calculator for 2025."
+  keywords="muhurat 2025, vivah muhurat, grihapravesh muhurat, auspicious timing, shubh muhurat today, hindu muhurat finder"
+  schema={schema}
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Vedic Timing Guide</p>
+      <h1 class="font-display text-4xl md:text-5xl font-semibold mb-4">Muhurat Finder</h1>
+      <p class="text-cream/60 font-body text-lg">Every auspicious beginning deserves the right moment</p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 py-16">
+    
+    <div class="card-sacred p-8 mb-10">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-6">Find Your Muhurat</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div>
+          <label class="block text-sm font-sans text-darkbrown/70 mb-2">Occasion</label>
+          <select class="w-full border border-gold/30 rounded-sm px-3 py-2.5 text-sm font-body text-darkbrown bg-cream focus:outline-none focus:border-saffron-400">
+            {muhurats.map(m => <option value={m.name}>{m.name}</option>)}
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-sans text-darkbrown/70 mb-2">From Date</label>
+          <input type="date" class="w-full border border-gold/30 rounded-sm px-3 py-2.5 text-sm font-body text-darkbrown bg-cream focus:outline-none focus:border-saffron-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-sans text-darkbrown/70 mb-2">To Date</label>
+          <input type="date" class="w-full border border-gold/30 rounded-sm px-3 py-2.5 text-sm font-body text-darkbrown bg-cream focus:outline-none focus:border-saffron-400" />
+        </div>
+      </div>
+      <div class="mt-5 flex gap-3">
+        <button class="bg-saffron-600 text-white font-sans text-sm font-medium px-6 py-3 rounded-sm hover:bg-saffron-700 transition-colors">
+          Find Muhurat
+        </button>
+        <a href="/pandit" class="border border-saffron-300 text-saffron-700 font-sans text-sm font-medium px-6 py-3 rounded-sm hover:bg-saffron-50 transition-colors">
+          Ask Panditji Instead →
+        </a>
+      </div>
+      <p class="mt-3 text-xs font-sans text-darkbrown/40">Full muhurat calculation with API integration coming soon. Ask Panditji for immediate guidance.</p>
+    </div>
+
+    <!-- Occasion Cards -->
+    <h2 class="font-display text-3xl text-darkbrown font-semibold mb-6">Muhurat by Occasion</h2>
+    <div class="grid md:grid-cols-2 gap-5 mb-12">
+      {muhurats.map(m => (
+        <a href="/pandit" class="card-sacred p-5 flex items-center gap-4 group">
+          <span class="text-3xl">{m.icon}</span>
+          <div class="flex-1">
+            <h3 class="font-display text-lg text-darkbrown font-semibold group-hover:text-saffron-600 transition-colors">{m.name}</h3>
+            <p class="text-sm text-darkbrown/55 font-body">{m.desc}</p>
+          </div>
+          <span class="text-saffron-400 text-sm font-sans">Ask →</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- What is Muhurat info -->
+    <div class="bg-saffron-50/60 border border-saffron-100 rounded-sm p-8">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-4">What is Muhurat?</h2>
+      <p class="font-body text-darkbrown/70 leading-relaxed mb-4">
+        In Vedic tradition, <strong>Muhurat</strong> (or Muhurta) refers to an auspicious time period calculated based on the planetary positions, tithis, nakshatras, and other factors in the Panchang. Our scriptures teach us that beginning an important event at the right moment increases its chances of success and auspiciousness.
+      </p>
+      <p class="font-body text-darkbrown/70 leading-relaxed">
+        A good muhurat ensures that the cosmic energies support the activity. Just as a seed planted in the right season flourishes, an event begun at the right muhurat receives divine blessings.
+      </p>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

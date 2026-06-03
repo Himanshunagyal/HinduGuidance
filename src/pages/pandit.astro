@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PanditChat from '../components/PanditChat.jsx';
+
+export const prerender = false;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What can I ask the AI Pandit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can ask about vrat rules and dates, puja procedures, mantra meanings, muhurat timings, Hindu festivals, dharmic guidance, and any questions about Hindu rituals and traditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the AI Pandit guidance authentic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our AI Pandit is trained on Vedic scriptures, Puranas, and dharma shastras. The guidance reflects authentic Hindu traditions. For major life decisions, we recommend consulting a local pandit as well."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Ask AI Pandit - Vedic Guidance on Vrat, Puja & Dharma"
+  description="Get instant answers from our AI Pandit Shivananda on vrat rules, puja vidhi, mantra meanings, muhurat, and all Hindu ritual questions. Available 24x7."
+  keywords="ask pandit online, hindu pandit AI, vrat rules, puja vidhi, dharmic guidance, online pandit, vedic guidance"
+  schema={faqSchema}
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <span class="text-5xl block mb-4">🕉️</span>
+      <h1 class="font-display text-4xl md:text-5xl font-semibold mb-3">Ask Pandit Shivananda</h1>
+      <p class="text-cream/60 font-body text-lg">
+        Vedic wisdom for modern life — vrat guidance, puja vidhi, muhurat, and dharmic counsel. Available every moment of every day.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Chat -->
+      <div class="md:col-span-2">
+        <PanditChat client:load />
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-5">
+        <div class="card-sacred p-5">
+          <h3 class="font-display text-lg text-darkbrown font-semibold mb-4">What to Ask</h3>
+          <ul class="space-y-2 text-sm font-body text-darkbrown/70">
+            {[
+              "Vrat dates and rules",
+              "What to eat/avoid in fasts",
+              "Puja procedures at home",
+              "Mantra meanings",
+              "Auspicious timings",
+              "Festival significance",
+              "Remedies & spiritual practices",
+              "Deity-specific worship"
+            ].map(item => (
+              <li class="flex items-center gap-2">
+                <span class="text-saffron-400 text-xs">🪷</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-saffron-50 to-cream border border-saffron-100 rounded-sm p-5">
+          <h3 class="font-display text-lg text-darkbrown font-semibold mb-2">About Panditji</h3>
+          <p class="text-sm font-body text-darkbrown/65 leading-relaxed">
+            Pandit Shivananda is our AI Vedic guide, drawing from centuries of dharmic knowledge — Vedas, Upanishads, Puranas, and practical ritual traditions. He speaks with the warmth of a learned elder and the care of a devoted teacher.
+          </p>
+        </div>
+
+        <div class="card-sacred p-5">
+          <h3 class="font-display text-base text-darkbrown font-semibold mb-3">Quick Links</h3>
+          <div class="space-y-2">
+            <a href="/vrat/ekadashi" class="block text-sm font-sans text-saffron-600 hover:underline">→ Ekadashi Vrat Guide</a>
+            <a href="/vrat/pradosh" class="block text-sm font-sans text-saffron-600 hover:underline">→ Pradosh Vrat Guide</a>
+            <a href="/vrat/navratri" class="block text-sm font-sans text-saffron-600 hover:underline">→ Navratri Vrat Guide</a>
+            <a href="/muhurat" class="block text-sm font-sans text-saffron-600 hover:underline">→ Muhurat Finder</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

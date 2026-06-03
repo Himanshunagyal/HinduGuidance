@@ -1,0 +1,75 @@
+---
+const navLinks = [
+  { href: '/vrat', label: 'Vrat Calendar' },
+  { href: '/muhurat', label: 'Muhurat' },
+  { href: '/pandit', label: 'Ask Panditji' },
+  { href: '/festivals', label: 'Festivals' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-gold/20">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-br from-saffron-400 to-saffron-600 flex items-center justify-center shadow-md group-hover:shadow-saffron-300/50 transition-all">
+        <span class="text-white text-lg font-bold sanskrit">ॐ</span>
+      </div>
+      <div>
+        <span class="font-display text-xl font-semibold text-darkbrown tracking-wide">PanchangSeva</span>
+        <p class="text-xs text-saffron-600 font-sans tracking-widest uppercase leading-none -mt-0.5">Sacred Guide</p>
+      </div>
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-1">
+      {navLinks.map(link => (
+        <a 
+          href={link.href}
+          class={`px-4 py-2 text-sm font-sans font-medium rounded-sm transition-all ${
+            currentPath.startsWith(link.href)
+              ? 'text-saffron-600 bg-saffron-50 border-b-2 border-saffron-400'
+              : 'text-darkbrown/70 hover:text-saffron-600 hover:bg-saffron-50/50'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA -->
+    <a 
+      href="/pandit"
+      class="hidden md:flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-saffron-600 text-white text-sm font-sans font-medium px-4 py-2 rounded-sm shadow-md hover:shadow-saffron-300/40 hover:from-saffron-600 hover:to-saffron-700 transition-all"
+    >
+      🙏 Ask Panditji
+    </a>
+
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-darkbrown" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gold/20 bg-cream">
+    {navLinks.map(link => (
+      <a href={link.href} class="block px-6 py-3 text-sm font-sans text-darkbrown/80 hover:text-saffron-600 border-b border-gold/10">
+        {link.label}
+      </a>
+    ))}
+    <a href="/pandit" class="block px-6 py-3 text-sm font-sans font-medium text-saffron-600">
+      🙏 Ask Panditji
+    </a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>
