@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = "June 1, 2025";
+---
+
+<BaseLayout
+  title="Privacy Policy - PanchangSeva"
+  description="PanchangSeva Privacy Policy — how we collect, use and protect your information."
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h1 class="font-display text-4xl font-semibold mb-3">Privacy Policy</h1>
+      <p class="text-cream/60 font-sans text-sm">Last updated: {lastUpdated}</p>
+    </div>
+  </div>
+
+  <div class="max-w-3xl mx-auto px-4 py-16 space-y-8">
+    {[
+      {
+        title: "1. Information We Collect",
+        content: "PanchangSeva does not require user registration. We do not collect personal information such as your name, email, or address unless you voluntarily contact us. When you use our AI Pandit feature, the messages you send are processed through a third-party AI API (Groq) to generate responses. We do not store these conversations on our servers."
+      },
+      {
+        title: "2. Automatically Collected Information",
+        content: "Like most websites, we may collect standard log information including your IP address, browser type, referring pages, and pages visited. This data is used solely for website analytics and improving user experience. We may use Google Analytics or similar tools to understand how visitors interact with our site."
+      },
+      {
+        title: "3. Cookies",
+        content: "We may use cookies to improve your browsing experience. These are small files stored on your device. You can instruct your browser to refuse all cookies, though some parts of the site may not function properly as a result. Third-party advertisers (such as Google AdSense) may also place cookies on your device to serve relevant ads."
+      },
+      {
+        title: "4. Google AdSense & Advertising",
+        content: "We use Google AdSense to display advertisements on our website. Google may use cookies to serve ads based on your prior visits to our website or other websites. You can opt out of personalized advertising by visiting Google's Ad Settings. We do not control the content of ads served by third parties."
+      },
+      {
+        title: "5. Third-Party Services",
+        content: "Our AI Pandit feature uses the Groq API to process your queries. Your queries are subject to Groq's privacy policy. We do not sell, trade, or transfer your personally identifiable information to outside parties except as required by law or as necessary to operate our services."
+      },
+      {
+        title: "6. Children's Privacy",
+        content: "PanchangSeva is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us and we will delete it."
+      },
+      {
+        title: "7. Changes to This Policy",
+        content: "We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. Continued use of the site after changes constitutes acceptance of the revised policy."
+      },
+      {
+        title: "8. Contact",
+        content: "If you have questions about this Privacy Policy, please contact us at contact@panchangseva.in."
+      }
+    ].map(section => (
+      <div class="card-sacred p-6">
+        <h2 class="font-display text-xl text-darkbrown font-semibold mb-3">{section.title}</h2>
+        <p class="font-body text-darkbrown/70 leading-relaxed">{section.content}</p>
+      </div>
+    ))}
+  </div>
+
+  <Footer />
+</BaseLayout>

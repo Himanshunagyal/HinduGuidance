@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Disclaimer - PanchangSeva"
+  description="PanchangSeva Disclaimer — important information about the nature of our spiritual guidance content."
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h1 class="font-display text-4xl font-semibold mb-3">Disclaimer</h1>
+    </div>
+  </div>
+
+  <div class="max-w-3xl mx-auto px-4 py-16 space-y-6">
+    {[
+      {
+        title: "General Information Only",
+        content: "The content on PanchangSeva is provided for general informational and spiritual guidance purposes only. While we make every effort to ensure accuracy, Hindu traditions vary significantly across regions, communities, and sampradayas. Information on this site may not reflect the specific practices of your community."
+      },
+      {
+        title: "AI Pandit is Not a Real Pandit",
+        content: "Our AI Pandit feature is powered by artificial intelligence. It is designed to provide helpful guidance based on widely accepted Hindu texts and traditions. However, it is NOT a substitute for a qualified, ordained human pandit. For important ceremonies such as marriages, griha pravesh, last rites, or major pujas, please consult a qualified pandit in your area."
+      },
+      {
+        title: "Medical & Fasting Advice",
+        content: "Information about vrat (fasting) rules is provided for religious guidance only. If you have a medical condition such as diabetes, pregnancy, heart disease, or any other health concern, please consult your doctor before undertaking any fasting regimen. PanchangSeva is not responsible for any health consequences resulting from fasting."
+      },
+      {
+        title: "Date & Timing Accuracy",
+        content: "Vrat dates, muhurat timings, and festival dates are calculated based on standard Hindu Panchang. Actual dates may vary by region (e.g., North India vs South India calendars), time zone, and local panchangam. Always verify important dates with your local temple or pandit."
+      },
+      {
+        title: "No Religious Authority",
+        content: "PanchangSeva does not claim to be a religious authority. We are a digital platform that aggregates and presents information from publicly available Vedic and Hindu sources. All spiritual decisions remain entirely your own responsibility."
+      },
+      {
+        title: "Affiliate & Advertising Disclosure",
+        content: "PanchangSeva may display Google AdSense advertisements and may contain affiliate links. We may earn a commission from qualifying purchases or ad clicks. This does not affect the editorial content or the guidance provided on this site."
+      }
+    ].map(section => (
+      <div class="card-sacred p-6">
+        <h2 class="font-display text-xl text-darkbrown font-semibold mb-3">{section.title}</h2>
+        <p class="font-body text-darkbrown/70 leading-relaxed">{section.content}</p>
+      </div>
+    ))}
+  </div>
+
+  <Footer />
+</BaseLayout>
