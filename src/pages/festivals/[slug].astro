@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { festivals } from '../../content/festivals/data';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return festivals.map(f => ({ params: { slug: f.slug }, props: { festival: f } }));
+}
+
+const { festival: f } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": f.faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": f.name,
+  "startDate": f.date,
+  "description": f.shortDesc,
+  "location": { "@type": "Place", "name": "India" }
+};
+---
+
+<BaseLayout
+  title={`${f.name} - Date, Muhurat, Rituals & Significance`}
+  description={f.shortDesc}
+  keywords={f.keywords}
+  schema={[faqSchema, eventSchema]}
+>
+  <Header />
+
+  <div class="max-w-4xl mx-auto px-4 pt-6 pb-2">
+    <nav class="text-xs font-sans text-darkbrown/50 flex items-center gap-2">
+      <a href="/" class="hover:text-saffron-600">Home</a>
+      <span>›</span>
+      <a href="/festivals" class="hover:text-saffron-600">Festivals</a>
+      <span>›</span>
+      <span class="text-darkbrown/80">{f.name}</span>
+    </nav>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+
+    <div class="flex items-start gap-5 mb-6">
+      <span class="text-6xl">{f.icon}</span>
+      <div>
+        <h1 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold">{f.name}</h1>
+        <p class="text-saffron-600 font-sans font-medium mt-1">{f.date} • {f.day}</p>
+        <p class="text-gold font-sans text-sm">{f.tithi}</p>
+      </div>
+    </div>
+
+    <!-- Key info bar -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+      <div class="card-sacred p-4 text-center">
+        <p class="text-xs font-sans text-saffron-600 uppercase tracking-wide mb-1">Date</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{f.date}</p>
+      </div>
+      <div class="card-sacred p-4 text-center">
+        <p class="text-xs font-sans text-saffron-600 uppercase tracking-wide mb-1">Tithi</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{f.tithi}</p>
+      </div>
+      <div class="card-sacred p-4 text-center col-span-2 md:col-span-1">
+        <p class="text-xs font-sans text-saffron-600 uppercase tracking-wide mb-1">Muhurat</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{f.muhurat}</p>
+      </div>
+    </div>
+
+    <p class="text-darkbrown/70 font-body text-lg leading-relaxed mb-8 border-l-4 border-saffron-300 pl-5 bg-saffron-50/50 py-4 pr-4 rounded-r-sm">
+      {f.description}
+    </p>
+
+    <!-- Day-by-day -->
+    <h2 class="font-display text-3xl text-darkbrown font-semibold mb-6">Day by Day Guide</h2>
+    <div class="space-y-3 mb-10">
+      {f.days.map((day, i) => (
+        <div class="card-sacred p-4 flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-saffron-100 text-saffron-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-display text-darkbrown font-semibold">{day.day}</h3>
+              <span class="text-xs font-sans text-saffron-600 bg-saffron-50 px-2 py-0.5 border border-saffron-100 rounded-sm">{day.date}</span>
+            </div>
+            <p class="font-body text-darkbrown/65 text-sm leading-relaxed">{day.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Rituals -->
+    <div class="card-sacred p-6 mb-8">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-5">Rituals & Traditions</h2>
+      <ul class="space-y-3">
+        {f.rituals.map((r, i) => (
+          <li class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-saffron-100 text-saffron-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+            <span class="text-darkbrown/75 font-body text-sm">{r}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-10">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {f.faq.map(item => (
+          <div class="card-sacred p-5">
+            <h3 class="font-display text-lg text-darkbrown font-semibold mb-2">{item.q}</h3>
+            <p class="font-body text-darkbrown/70 text-sm leading-relaxed">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="border border-saffron-200 bg-saffron-50/50 rounded-sm p-6 flex flex-col md:flex-row items-center gap-5">
+      <span class="text-4xl">🙏</span>
+      <div class="flex-1">
+        <h3 class="font-display text-xl text-darkbrown font-semibold mb-1">Questions about {f.name}?</h3>
+        <p class="text-sm text-darkbrown/60 font-body">Ask Pandit Shivananda for puja guidance and spiritual advice.</p>
+      </div>
+      <a href="/pandit" class="bg-saffron-600 text-white font-sans text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-saffron-700 transition-colors whitespace-nowrap">
+        Ask Panditji →
+      </a>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

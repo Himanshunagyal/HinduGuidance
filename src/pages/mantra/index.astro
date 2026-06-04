@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { mantras } from '../../content/mantras/data';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Hindu Mantras for Every Purpose",
+  "itemListElement": mantras.map((m, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "url": `https://panchangseva.in/mantra/${m.slug}`,
+    "name": m.title
+  }))
+};
+---
+
+<BaseLayout
+  title="Hindu Mantras - Mantras for Studies, Success, Peace & Confidence"
+  description="Powerful Hindu mantras for every purpose — studies, success, anxiety, peace of mind, and confidence. With Sanskrit text, meaning, and practice guide."
+  keywords="hindu mantras, mantra for studies, mantra for success, mantra for peace, mantra for anxiety, vedic mantras"
+  schema={schema}
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Sacred Sounds</p>
+      <h1 class="font-display text-4xl md:text-5xl font-semibold mb-4">Hindu Mantras</h1>
+      <p class="text-cream/60 font-body text-lg max-w-2xl mx-auto">Ancient Vedic sounds for every need — from exam success to inner peace. Each mantra carries the power of centuries of devotion.</p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {mantras.map(mantra => (
+        <a href={`/mantra/${mantra.slug}`} class="card-sacred p-6 group">
+          <span class="text-4xl block mb-4">{mantra.icon}</span>
+          <h2 class="font-display text-xl text-darkbrown font-semibold mb-1 group-hover:text-saffron-600 transition-colors">{mantra.title}</h2>
+          <p class="text-xs text-gold font-sans mb-3">{mantra.deity}</p>
+          <p class="text-sm text-darkbrown/60 font-body leading-relaxed mb-4">{mantra.shortDesc}</p>
+          <p class="text-saffron-600 text-sm font-sans font-medium">View Mantras →</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

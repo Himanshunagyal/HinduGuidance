@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { actions } from '../../content/actions/data';
+import { getTodayPanchang } from '../../lib/panchang';
+
+export const prerender = false;
+
+const slug = Astro.params.slug;
+const action = actions.find(a => a.slug === slug);
+
+if (!action) return Astro.redirect('/404');
+
+const panchang = await getTodayPanchang();
+const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": action.faq.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<BaseLayout
+  title={`${action.title} - Vedic Panchang Guide`}
+  description={action.shortDesc}
+  keywords={action.keywords}
+  schema={faqSchema}
+>
+  <Header />
+
+  <div class="max-w-4xl mx-auto px-4 pt-6 pb-2">
+    <nav class="text-xs font-sans text-darkbrown/50 flex items-center gap-2">
+      <a href="/" class="hover:text-saffron-600">Home</a>
+      <span>›</span>
+      <span class="text-darkbrown/80">{action.title}</span>
+    </nav>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+
+    <div class="flex items-start gap-4 mb-6">
+      <span class="text-6xl">{action.icon}</span>
+      <div>
+        <h1 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold">{action.title}</h1>
+        <p class="text-darkbrown/50 font-sans text-sm mt-1">{today}</p>
+      </div>
+    </div>
+
+    <!-- Today's verdict card -->
+    <div class="bg-gradient-to-br from-darkbrown to-deepred text-cream rounded-sm p-6 mb-8">
+      <p class="text-gold/70 font-sans text-xs tracking-widest uppercase mb-3">Today's Panchang Check</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+        {[
+          { label: "Tithi", value: panchang.tithi },
+          { label: "Nakshatra", value: panchang.nakshatra },
+          { label: "Rahu Kalam", value: panchang.rahuKalam },
+          { label: "Abhijit", value: panchang.abhijitMuhurat },
+        ].map(item => (
+          <div class="bg-white/10 rounded-sm p-3 text-center">
+            <p class="text-gold/60 text-xs font-sans uppercase mb-1">{item.label}</p>
+            <p class="text-cream font-display font-semibold text-sm">{item.value}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-cream/60 font-body text-sm">
+        For a definitive answer based on your full horoscope, <a href="/pandit" class="text-gold underline">ask Pandit Shivananda</a>.
+      </p>
+    </div>
+
+    <p class="text-darkbrown/70 font-body text-lg leading-relaxed mb-8 border-l-4 border-saffron-300 pl-5 bg-saffron-50/50 py-4 pr-4 rounded-r-sm">
+      {action.description}
+    </p>
+
+    <!-- Good vs Avoid grid -->
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div class="card-sacred p-5">
+        <h2 class="font-display text-xl text-darkbrown font-semibold mb-4">✅ Auspicious Days</h2>
+        <ul class="space-y-2">
+          {action.goodDays.map(d => (
+            <li class="flex items-start gap-2 text-sm font-body text-green-700">
+              <span class="text-green-400 mt-1">•</span>{d}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="card-sacred p-5">
+        <h2 class="font-display text-xl text-darkbrown font-semibold mb-4">❌ Days to Avoid</h2>
+        <ul class="space-y-2">
+          {action.avoidDays.map(d => (
+            <li class="flex items-start gap-2 text-sm font-body text-red-700">
+              <span class="text-red-400 mt-1">•</span>{d}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nakshatras -->
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div class="card-sacred p-5">
+        <h2 class="font-display text-lg text-darkbrown font-semibold mb-3">Best Nakshatras</h2>
+        <div class="flex flex-wrap gap-2">
+          {action.bestNakshatras.map(n => (
+            <span class="text-xs bg-green-50 text-green-700 px-3 py-1 rounded-full border border-green-100 font-sans">{n}</span>
+          ))}
+        </div>
+      </div>
+      <div class="card-sacred p-5">
+        <h2 class="font-display text-lg text-darkbrown font-semibold mb-3">Avoid These Nakshatras</h2>
+        <div class="flex flex-wrap gap-2">
+          {action.avoidNakshatras.map(n => (
+            <span class="text-xs bg-red-50 text-red-700 px-3 py-1 rounded-full border border-red-100 font-sans">{n}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- General advice -->
+    <div class="card-sacred p-6 mb-8">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-3">Vedic Guidance</h2>
+      <p class="font-body text-darkbrown/70 leading-relaxed">{action.generalAdvice}</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-10">
+      <h2 class="font-display text-2xl text-darkbrown font-semibold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {action.faq.map(f => (
+          <div class="card-sacred p-5">
+            <h3 class="font-display text-lg text-darkbrown font-semibold mb-2">{f.q}</h3>
+            <p class="font-body text-darkbrown/70 text-sm leading-relaxed">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="border border-saffron-200 bg-saffron-50/50 rounded-sm p-6 flex flex-col md:flex-row items-center gap-5">
+      <span class="text-4xl">🙏</span>
+      <div class="flex-1">
+        <h3 class="font-display text-xl text-darkbrown font-semibold mb-1">Need a personal muhurat?</h3>
+        <p class="text-sm text-darkbrown/60 font-body">Ask Pandit Shivananda for guidance specific to your date, time, and place.</p>
+      </div>
+      <a href="/pandit" class="bg-saffron-600 text-white font-sans text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-saffron-700 transition-colors whitespace-nowrap">
+        Ask Panditji →
+      </a>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { festivals } from '../../content/festivals/data';
+---
+
+<BaseLayout
+  title="Hindu Festival Calendar 2026 - All Festival Dates"
+  description="Complete Hindu festival calendar 2026. Dates for Diwali, Navratri, Ganesh Chaturthi, Ekadashi and all major Hindu festivals."
+  keywords="hindu festivals 2026, diwali 2026 date, navratri 2026, ganesh chaturthi 2026, hindu calendar 2026"
+>
+  <Header />
+
+  <div class="bg-gradient-to-b from-darkbrown to-deepred text-cream py-14">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Vedic Calendar</p>
+      <h1 class="font-display text-4xl md:text-5xl font-semibold mb-4">Hindu Festival Calendar 2026</h1>
+      <p class="text-cream/60 font-body text-lg">Dates, significance, rituals and muhurat for all major Hindu festivals</p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {festivals.map(f => (
+        <a href={`/festivals/${f.slug}`} class="card-sacred p-6 group">
+          <span class="text-4xl block mb-4">{f.icon}</span>
+          <h2 class="font-display text-xl text-darkbrown font-semibold mb-1 group-hover:text-saffron-600 transition-colors">{f.name}</h2>
+          <p class="text-saffron-600 font-sans text-sm font-medium mb-3">{f.date}</p>
+          <p class="text-sm text-darkbrown/60 font-body leading-relaxed mb-4">{f.shortDesc}</p>
+          <p class="text-saffron-600 text-sm font-sans font-medium">Full Details →</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
