@@ -6,7 +6,7 @@ export const festivals = [
     date: "October 20, 2026",
     tithi: "Amavasya, Kartik Month",
     day: "Tuesday",
-    keywords: "diwali 2026 date, diwali kab hai 2026, diwali date october 2026, deepawali 2026",
+    keywords: "diwali 2026 date, diwali kab hai 2026, diwali date october 2026, deepawali 2026, diwali lakshmi puja muhurat 2026",
     shortDesc: "Diwali 2026 falls on October 20th (Tuesday). The festival of lights celebrated over 5 days with Lakshmi puja on the main night.",
     description: "Diwali, the Festival of Lights, is one of the most celebrated Hindu festivals. In 2026, Diwali falls on October 20th (Tuesday), on the Amavasya tithi of the Kartik month. The festival symbolizes the victory of light over darkness, good over evil, and knowledge over ignorance. According to the Ramayana, it marks the return of Lord Rama to Ayodhya after 14 years of exile and his victory over Ravana.",
     days: [
@@ -26,10 +26,171 @@ export const festivals = [
       "Offer lotus flowers, kheel-batasha, and sweets to Lakshmi",
       "Chant Lakshmi Chalisa or Sri Sukta during puja"
     ],
+    relatedPages: [
+      { label: "Dhanteras 2026", slug: "dhanteras-2026", icon: "🪙" },
+      { label: "Choti Diwali 2026", slug: "choti-diwali-2026", icon: "✨" },
+      { label: "Govardhan Puja 2026", slug: "govardhan-puja-2026", icon: "🌿" },
+      { label: "Bhai Dooj 2026", slug: "bhai-dooj-2026", icon: "🤝" },
+      { label: "Buy Gold Today?", slug: "/today/can-i-buy-gold-today", icon: "💛", external: true },
+    ],
     faq: [
       { q: "What date is Diwali in 2026?", a: "Diwali 2026 falls on October 20th, Tuesday. The Amavasya tithi begins on the evening of October 19th." },
       { q: "What time is Lakshmi Puja muhurat on Diwali 2026?", a: "The auspicious Lakshmi Puja muhurat on Diwali 2026 is approximately 6:30 PM to 8:30 PM IST. Verify with your local panchangam for city-specific timing." },
-      { q: "Why is Diwali celebrated?", a: "Diwali commemorates Lord Rama's return to Ayodhya, the victory of Lord Krishna over Narakasura, the release of Goddess Lakshmi from the ocean, and Mahavira's attainment of nirvana — different traditions celebrate different events." }
+      { q: "Why is Diwali celebrated?", a: "Diwali commemorates Lord Rama's return to Ayodhya, the victory of Lord Krishna over Narakasura, the release of Goddess Lakshmi from the ocean, and Mahavira's attainment of nirvana — different traditions celebrate different events." },
+      { q: "What are the 5 days of Diwali in 2026?", a: "The 5 days are: Dhanteras (Oct 18), Naraka Chaturdashi/Choti Diwali (Oct 19), Main Diwali (Oct 20), Govardhan Puja (Oct 21), and Bhai Dooj (Oct 22)." }
+    ]
+  },
+  {
+    slug: "dhanteras-2026",
+    name: "Dhanteras 2026",
+    icon: "🪙",
+    date: "October 18, 2026",
+    tithi: "Trayodashi, Krishna Paksha, Kartik Month",
+    day: "Sunday",
+    keywords: "dhanteras 2026 date, dhanteras kab hai 2026, dhanteras october 2026, dhanteras gold buying muhurat 2026, dhan teras 2026",
+    shortDesc: "Dhanteras 2026 falls on October 18th (Sunday). The first day of Diwali — buy gold, silver and new utensils for prosperity.",
+    description: "Dhanteras (Dhanatrayodashi) 2026 falls on October 18th (Sunday), marking the first day of the 5-day Diwali celebration. 'Dhan' means wealth and 'Teras' means the 13th lunar day. On this day, Goddess Lakshmi and Lord Dhanvantari (deity of Ayurveda and health) are worshipped. Buying gold, silver, or new utensils on Dhanteras is considered extremely auspicious — it is believed that wealth bought on this day multiplies manifold.",
+    days: [
+      { day: "Dhanteras Puja", date: "October 18, 2026 — Evening", desc: "Light a diya facing south at the entrance to ward off Yama (death). Worship Lakshmi and Dhanvantari." },
+      { day: "Shopping Muhurat", date: "October 18, 2026 — All Day", desc: "The entire day is auspicious for buying gold, silver, brooms, new utensils, and electronics." },
+      { day: "Yama Deepam", date: "October 18, 2026 — Night", desc: "Light a lamp facing south. It is said to protect family members from untimely death." },
+    ],
+    muhurat: "Dhanteras Puja Muhurat: 7:01 PM – 8:17 PM (IST)",
+    rituals: [
+      "Buy gold, silver coins, or new utensils — even small amounts are auspicious",
+      "Buy a broom (jhadu) to sweep away poverty",
+      "Light a diya facing south in the evening",
+      "Worship Goddess Lakshmi and Lord Dhanvantari",
+      "Draw small footprints with flour from entrance to puja room (Lakshmi's arrival)",
+      "Offer lotus, coins, and sweets to Lakshmi",
+      "Keep the main door open and well-lit all evening"
+    ],
+    relatedPages: [
+      { label: "Diwali 2026", slug: "diwali-2026", icon: "🪔" },
+      { label: "Choti Diwali 2026", slug: "choti-diwali-2026", icon: "✨" },
+      { label: "Govardhan Puja 2026", slug: "govardhan-puja-2026", icon: "🌿" },
+      { label: "Bhai Dooj 2026", slug: "bhai-dooj-2026", icon: "🤝" },
+      { label: "Buy Gold Today?", slug: "/today/can-i-buy-gold-today", icon: "💛", external: true },
+    ],
+    faq: [
+      { q: "What date is Dhanteras in 2026?", a: "Dhanteras 2026 falls on October 18th, Sunday. It is the first day of the 5-day Diwali festival." },
+      { q: "What should I buy on Dhanteras 2026?", a: "Gold, silver, silver coins, new utensils, broom, electronics, and vehicles are all considered auspicious purchases on Dhanteras. Even buying a small gold or silver coin counts." },
+      { q: "What is the puja muhurat for Dhanteras 2026?", a: "The Dhanteras puja muhurat is approximately 7:01 PM to 8:17 PM IST on October 18, 2026. The pradosh kaal (dusk period) is most auspicious." },
+      { q: "Why is Dhanteras celebrated?", a: "Dhanteras marks the emergence of Lord Dhanvantari (the divine physician) from the ocean during Samudra Manthan, carrying the pot of amrit. It also marks the return of Goddess Lakshmi. Buying valuables on this day invites her blessings of wealth and health." }
+    ]
+  },
+  {
+    slug: "choti-diwali-2026",
+    name: "Choti Diwali 2026 (Naraka Chaturdashi)",
+    icon: "✨",
+    date: "October 19, 2026",
+    tithi: "Chaturdashi, Krishna Paksha, Kartik Month",
+    day: "Monday",
+    keywords: "choti diwali 2026, naraka chaturdashi 2026, narak chaturdashi date 2026, choti diwali kab hai 2026, roop chaudas 2026",
+    shortDesc: "Choti Diwali (Naraka Chaturdashi) 2026 falls on October 19th. Celebrate Lord Krishna's victory over Narakasura with early morning oil bath.",
+    description: "Choti Diwali 2026, also known as Naraka Chaturdashi or Roop Chaudas, falls on October 19th (Monday). This is the second day of the Diwali festival, falling on the Chaturdashi tithi of the Krishna Paksha in Kartik month. It commemorates Lord Krishna's (and Satyabhama's) victory over the demon Narakasura, who had imprisoned 16,000 women. The defining ritual is an oil bath (abhyanga snan) taken before sunrise — it is said to wash away sins and bestow beauty and good health.",
+    days: [
+      { day: "Abhyanga Snan (Pre-sunrise)", date: "October 19, 2026 — Before 5:23 AM", desc: "Apply sesame oil (til oil) to the body before bathing before sunrise. This ritual is the most important of the day." },
+      { day: "Naraka Chaturdashi Puja", date: "October 19, 2026 — Evening", desc: "Light 14 diyas in the house. Worship Lord Krishna and Goddess Kali. Burst crackers to celebrate Narakasura's defeat." },
+      { day: "Preparations for Main Diwali", date: "October 19, 2026", desc: "Complete rangoli, decorations, and shopping before the main Diwali night tomorrow." },
+    ],
+    muhurat: "Abhyanga Snan: Before Sunrise (before 5:23 AM IST). Puja Muhurat: 5:30 PM – 7:00 PM",
+    rituals: [
+      "Wake up before sunrise and apply sesame oil (til tel) to the entire body",
+      "Bathe before sunrise — this is considered most purifying",
+      "Light 14 diyas in the home in the evening",
+      "Worship Lord Krishna and Goddess Kali",
+      "Burst crackers to celebrate defeat of Narakasura",
+      "Apply ubtan (turmeric paste) for beauty — hence 'Roop Chaudas'",
+      "Complete all Diwali shopping and preparations today"
+    ],
+    relatedPages: [
+      { label: "Dhanteras 2026", slug: "dhanteras-2026", icon: "🪙" },
+      { label: "Diwali 2026", slug: "diwali-2026", icon: "🪔" },
+      { label: "Govardhan Puja 2026", slug: "govardhan-puja-2026", icon: "🌿" },
+      { label: "Bhai Dooj 2026", slug: "bhai-dooj-2026", icon: "🤝" },
+    ],
+    faq: [
+      { q: "What date is Choti Diwali in 2026?", a: "Choti Diwali (Naraka Chaturdashi) 2026 falls on October 19th, Monday — one day before the main Diwali on October 20th." },
+      { q: "Why is the oil bath on Naraka Chaturdashi important?", a: "According to tradition, Lord Krishna proclaimed after killing Narakasura that anyone who bathes with oil before sunrise on this day will be freed from the hell (Naraka) that Narakasura represented. This ritual is believed to cleanse sins and bestow radiant health." },
+      { q: "What is Roop Chaudas?", a: "Roop Chaudas (Roop = beauty, Chaudas = 14th day) is another name for Naraka Chaturdashi, especially in Gujarat and Rajasthan. Women apply ubtan (turmeric, chickpea flour, cream paste) and oil before bathing to enhance beauty and complexion." },
+      { q: "How many diyas should be lit on Choti Diwali?", a: "14 diyas are traditionally lit on Naraka Chaturdashi — one for each of the 14 worlds (lokas) in Hindu cosmology." }
+    ]
+  },
+  {
+    slug: "govardhan-puja-2026",
+    name: "Govardhan Puja 2026",
+    icon: "🌿",
+    date: "October 21, 2026",
+    tithi: "Pratipada, Shukla Paksha, Kartik Month",
+    day: "Wednesday",
+    keywords: "govardhan puja 2026 date, govardhan puja kab hai 2026, annakut 2026, govardhan puja october 2026",
+    shortDesc: "Govardhan Puja 2026 falls on October 21st (Wednesday). Celebrate Lord Krishna lifting Govardhan mountain with Annakut — 56 food offerings.",
+    description: "Govardhan Puja 2026, also known as Annakut, falls on October 21st (Wednesday) — the fourth day of the Diwali festival. It falls on the Pratipada tithi of Shukla Paksha in Kartik month. This festival commemorates Lord Krishna lifting the Govardhan mountain on his little finger for 7 days to protect the people of Vrindavan from the torrential rains sent by Indra. This event marks the shift from Indra-worship to Krishna-worship in Vrindavan. The main ritual is preparing 56 food items (Chappan Bhog) and offering them to Lord Krishna.",
+    days: [
+      { day: "Govardhan Puja Morning", date: "October 21, 2026 — Morning", desc: "Make a small hillock of cow dung or soil to represent Govardhan mountain. Decorate with flowers and diyas." },
+      { day: "Annakut (56 Bhog) Offering", date: "October 21, 2026 — Late Morning", desc: "Prepare and offer 56 food items to Lord Krishna. Include all types of food — sweets, savories, rice dishes, breads, fruits." },
+      { day: "Evening Aarti", date: "October 21, 2026 — Sunset", desc: "Circumambulate the Govardhan mound. Perform aarti. Distribute prasad." },
+    ],
+    muhurat: "Govardhan Puja Muhurat: 6:32 AM – 8:43 AM and 3:20 PM – 5:31 PM (IST)",
+    rituals: [
+      "Make a Govardhan hillock from cow dung or clay",
+      "Decorate with flowers, diyas, and small Krishna idols",
+      "Prepare 56 food items (Chappan Bhog) for offering",
+      "Include all 6 tastes — sweet, sour, salty, bitter, pungent, astringent",
+      "Circumambulate (parikrama) the Govardhan mound 7 times",
+      "Use fresh cow dung for puja — considered purifying",
+      "Feed cows on this day — considered highly meritorious"
+    ],
+    relatedPages: [
+      { label: "Diwali 2026", slug: "diwali-2026", icon: "🪔" },
+      { label: "Dhanteras 2026", slug: "dhanteras-2026", icon: "🪙" },
+      { label: "Choti Diwali 2026", slug: "choti-diwali-2026", icon: "✨" },
+      { label: "Bhai Dooj 2026", slug: "bhai-dooj-2026", icon: "🤝" },
+    ],
+    faq: [
+      { q: "What date is Govardhan Puja in 2026?", a: "Govardhan Puja 2026 falls on October 21st, Wednesday — the day after main Diwali (October 20th)." },
+      { q: "What is Annakut?", a: "Annakut (Anna = food, Kut = mountain) is the tradition of offering a mountain of food to Lord Krishna on Govardhan Puja. The 56 items (Chappan Bhog) represent the 8 meals Krishna missed while holding up Govardhan mountain for 7 days — 8 × 7 = 56." },
+      { q: "Why is cow dung used in Govardhan Puja?", a: "Cows are sacred in Hinduism and closely associated with Lord Krishna (who was a cowherd). Cow dung is considered purifying in Vedic tradition. On Govardhan Puja, worshipping the cow and using cow dung represents gratitude to the cow for its service to humanity." },
+      { q: "Can I do Govardhan Puja at home?", a: "Yes. Make a small mound of soil or cow dung, decorate it, and offer whatever food you can prepare. Even a simple offering of rice, dal, and sweets with sincere devotion is accepted by Lord Krishna. You don't need 56 items — the spirit of gratitude matters most." }
+    ]
+  },
+  {
+    slug: "bhai-dooj-2026",
+    name: "Bhai Dooj 2026",
+    icon: "🤝",
+    date: "October 22, 2026",
+    tithi: "Dwitiya, Shukla Paksha, Kartik Month",
+    day: "Thursday",
+    keywords: "bhai dooj 2026 date, bhai dooj kab hai 2026, bhai tika 2026, bhau beej 2026, bhai dooj october 2026",
+    shortDesc: "Bhai Dooj 2026 falls on October 22nd (Thursday). Sisters pray for brothers' long life and apply tilak. The final day of the Diwali festival.",
+    description: "Bhai Dooj 2026 falls on October 22nd (Thursday), the fifth and final day of the Diwali festival. Also known as Bhai Tika (Nepal), Bhau Beej (Maharashtra), or Yama Dwitiya, this festival celebrates the bond between brothers and sisters. According to legend, Yama (the god of death) visited his sister Yami (Yamuna river) on this day. She applied tilak on his forehead, fed him sweets, and prayed for his long life. In return, Yama blessed her. Since then, any brother who receives tilak from his sister on this day is believed to be protected from untimely death.",
+    days: [
+      { day: "Tilak Ceremony", date: "October 22, 2026 — Morning/Afternoon", desc: "Sister applies tilak (vermillion, rice, and curd) on brother's forehead. Performs aarti. Feeds him sweets." },
+      { day: "Brother's Gift", date: "October 22, 2026", desc: "Brother gives gift to sister — traditionally money, clothes, or jewellery — and promises to protect her." },
+      { day: "Yamuna Snan (Optional)", date: "October 22, 2026", desc: "Taking a dip in the Yamuna river on Bhai Dooj is considered extremely auspicious. If unable, water from any river can be used." },
+    ],
+    muhurat: "Bhai Dooj Tilak Muhurat: 1:12 PM – 3:27 PM (IST)",
+    rituals: [
+      "Sister prepares a puja thali with roli, rice, diya, sweets, and coconut",
+      "Apply tilak of roli + rice on brother's forehead",
+      "Perform brother's aarti with the diya",
+      "Feed brother a full meal — his favourite foods",
+      "Brother gives a gift and touches sister's feet",
+      "Chant 'Ganga-Yamuna' prayer for brother's longevity",
+      "If possible, visit Yamuna river or any river together"
+    ],
+    relatedPages: [
+      { label: "Diwali 2026", slug: "diwali-2026", icon: "🪔" },
+      { label: "Dhanteras 2026", slug: "dhanteras-2026", icon: "🪙" },
+      { label: "Choti Diwali 2026", slug: "choti-diwali-2026", icon: "✨" },
+      { label: "Govardhan Puja 2026", slug: "govardhan-puja-2026", icon: "🌿" },
+    ],
+    faq: [
+      { q: "What date is Bhai Dooj in 2026?", a: "Bhai Dooj 2026 falls on October 22nd, Thursday — the fifth and final day of the Diwali festival." },
+      { q: "What is the tilak muhurat for Bhai Dooj 2026?", a: "The auspicious tilak muhurat for Bhai Dooj 2026 is approximately 1:12 PM to 3:27 PM IST on October 22nd." },
+      { q: "What is the difference between Bhai Dooj and Raksha Bandhan?", a: "Both celebrate the sibling bond, but Raksha Bandhan (August 9, 2026) is about the brother's promise to protect the sister — she ties rakhi on his wrist. Bhai Dooj is the reverse — the sister prays for the brother's long life and applies tilak. In Bhai Dooj, the sister is the one performing the ritual." },
+      { q: "What gift should a brother give on Bhai Dooj?", a: "Traditionally brothers give cash, clothes, jewellery, or sweets. In modern times, anything the sister wishes for is appropriate. The sentiment of love and the promise of protection matters more than the material value." }
     ]
   },
   {

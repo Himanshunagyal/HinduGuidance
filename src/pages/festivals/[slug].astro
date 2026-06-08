@@ -124,6 +124,27 @@ const eventSchema = {
       </div>
     </div>
 
+    <!-- Related Pages -->
+    {f.relatedPages && f.relatedPages.length > 0 && (
+      <div class="mb-10">
+        <div class="divider-om mb-6"></div>
+        <h2 class="font-display text-2xl text-darkbrown font-semibold mb-4">Related Festivals & Pages</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {f.relatedPages.map((page) => (
+            <a
+              href={page.external ? page.slug : `/festivals/${page.slug}`}
+              class="card-sacred p-4 flex items-center gap-3 hover:border-saffron-400 hover:bg-saffron-50 transition-colors group"
+            >
+              <span class="text-2xl">{page.icon}</span>
+              <span class="font-display text-darkbrown text-sm font-medium group-hover:text-saffron-700 leading-tight">
+                {page.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
     <!-- CTA -->
     <div class="border border-saffron-200 bg-saffron-50/50 rounded-sm p-6 flex flex-col md:flex-row items-center gap-5">
       <span class="text-4xl">🙏</span>
