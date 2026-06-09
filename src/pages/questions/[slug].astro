@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { questions } from '../../content/questions/data';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return questions.map(q => ({ params: { slug: q.slug }, props: { question: q } }));
+}
+
+const { question: q } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": q.faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+
+// Q&A Schema for the main question
+const qaSchema = {
+  "@context": "https://schema.org",
+  "@type": "QAPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": q.title,
+    "text": q.description,
+    "answerCount": 1,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": q.answer,
+      "url": `https://hindupad.com/questions/${q.slug}`
+    }
+  }
+};
+---
+
+<BaseLayout
+  title={`${q.title} - Hindu Religious Question & Answer`}
+  description={q.shortDesc}
+  keywords={q.keywords}
+  schema={[faqSchema, qaSchema]}
+>
+  <Header />
+
+  <div class="max-w-4xl mx-auto px-4 pt-6 pb-2">
+    <nav class="text-xs font-sans text-darkbrown/50 flex items-center gap-2">
+      <a href="/" class="hover:text-saffron-600">Home</a>
+      <span>›</span>
+      <a href="/questions" class="hover:text-saffron-600">Questions</a>
+      <span>›</span>
+      <span class="text-darkbrown/80">{q.title}</span>
+    </nav>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+
+    <div class="flex items-start gap-5 mb-6">
+      <span class="text-6xl">{q.icon}</span>
+      <div>
+        <h1 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold">{q.title}</h1>
+        <p class="text-saffron-600 font-sans font-medium mt-1 text-sm">Spiritual Insight • Hindu Tradition</p>
+      </div>
+    </div>
+
+    <!-- Short Description Card -->
+    <div class="card-sacred p-5 mb-8 bg-saffron-50/30">
+      <p class="text-darkbrown/80 font-body text-base leading-relaxed italic">
+        "{q.shortDesc}"
+      </p>
+    </div>
+
+    <!-- Main Answer Section -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-2xl">📿</span>
+        <h2 class="font-display text-2xl text-darkbrown font-semibold">The Answer</h2>
+      </div>
+      <div class="card-sacred p-6">
+        <p class="text-darkbrown/75 font-body text-base leading-relaxed mb-4">
+          {q.description}
+        </p>
+        <div class="bg-saffron-50 p-5 rounded-sm mt-3">
+          <p class="text-darkbrown/80 font-body text-base leading-relaxed">
+            {q.answer}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Points Section -->
+    {q.keyPoints && q.keyPoints.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-2xl">🔑</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Key Points to Remember</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          {q.keyPoints.map((point, i) => (
+            <div class="card-sacred p-4 flex items-start gap-3">
+              <span class="text-saffron-600 font-bold text-sm bg-saffron-100 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                {i + 1}
+              </span>
+              <span class="text-darkbrown/70 font-body text-sm">{point}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Detailed Description (already shown above, this section adds more depth if needed) -->
+    <!-- The description field already contains detailed info -->
+
+    <!-- FAQ Section - More Questions & Answers -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-2xl">❓</span>
+        <h2 class="font-display text-2xl text-darkbrown font-semibold">You May Also Ask</h2>
+      </div>
+      <div class="space-y-4">
+        {q.faq.map((item, idx) => (
+          <div class="card-sacred p-5">
+            <div class="flex items-start gap-3">
+              <span class="text-saffron-600 font-bold text-sm bg-saffron-100 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="font-display text-lg text-darkbrown font-semibold mb-2">{item.q}</h3>
+                <p class="font-body text-darkbrown/70 text-sm leading-relaxed">{item.a}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Related Pages -->
+    {q.relatedPages && q.relatedPages.length > 0 && (
+      <div class="mb-10">
+        <div class="divider-om mb-6"></div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-2xl">🔗</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Related Questions & Topics</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {q.relatedPages.map((page) => (
+            <a
+              href={`/questions/${page.slug}`}
+              class="card-sacred p-4 flex items-center gap-3 hover:border-saffron-400 hover:bg-saffron-50 transition-colors group"
+            >
+              <span class="text-2xl">{page.icon}</span>
+              <span class="font-display text-darkbrown text-sm font-medium group-hover:text-saffron-700 leading-tight">
+                {page.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Spiritual Takeaway / Wisdom Box -->
+    <div class="border-l-4 border-saffron-500 bg-gradient-to-r from-saffron-50 to-transparent p-5 mb-8 rounded-r-sm">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-2xl">🕉️</span>
+        <h3 class="font-display text-darkbrown font-semibold text-lg">Spiritual Takeaway</h3>
+      </div>
+      <p class="text-darkbrown/65 font-body text-sm leading-relaxed italic">
+        {q.keyPoints && q.keyPoints[0] 
+          ? q.keyPoints.slice(0, 2).join(" • ") 
+          : "Understanding our traditions deepens our connection with the divine. May this knowledge bring you peace, wisdom, and spiritual growth."}
+      </p>
+    </div>
+
+    <!-- CTA - Ask Pandit -->
+    <div class="border border-saffron-200 bg-saffron-50/50 rounded-sm p-6 flex flex-col md:flex-row items-center gap-5">
+      <span class="text-4xl">🙏</span>
+      <div class="flex-1">
+        <h3 class="font-display text-xl text-darkbrown font-semibold mb-1">Still have questions about this topic?</h3>
+        <p class="text-sm text-darkbrown/60 font-body">Ask Pandit Shivananda for deeper spiritual guidance and clarification.</p>
+      </div>
+      <a href="/pandit" class="bg-saffron-600 text-white font-sans text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-saffron-700 transition-colors whitespace-nowrap">
+        Ask Panditji →
+      </a>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
