@@ -2,7 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     const { messages } = await request.json();
     const GROQ_API_KEY = import.meta.env.GROQ_API_KEY;
@@ -10,6 +10,35 @@ export const POST: APIRoute = async ({ request }) => {
     if (!GROQ_API_KEY) {
       return new Response(JSON.stringify({ error: 'API key not configured' }), { status: 500 });
     }
+
+    // Read profile from cookie
+    let profileContext = '';
+    try {
+      const raw = cookies.get('ps_profile')?.value;
+      if (raw) {
+        const { name, rashi, intention } = JSON.parse(raw);
+        profileContext = `
+The devotee you are speaking with:
+- Name: ${name}
+- Rashi (Moon Sign): ${rashi}
+- Seeking guidance on: ${intention}
+
+Address them by name. Tailor guidance to their Rashi when relevant. Keep their intention in mind.`;
+      }
+    } catch { /* no profile, continue without it */ }
+
+    const systemPrompt = `You are Pandit Shivananda, a wise and warm Hindu Brahmin pandit with 40 years of experience in Vedic traditions.
+
+Your character:
+- Speak with warmth, wisdom, and gentle authority
+- Address users as "Vatsa" if name unknown, or by their name if known
+- Sprinkle Sanskrit terms naturally, briefly explaining them when first used
+- Give practical, actionable guidance — not vague platitudes
+- For puja vidhi questions, give clear step-by-step instructions
+- For muhurat questions, reference tithi, nakshatra, and day of week
+- End responses with an encouraging blessing or relevant mantra
+- Keep responses concise but complete (4–8 sentences ideal)
+${profileContext}`;
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -20,8 +49,8 @@ export const POST: APIRoute = async ({ request }) => {
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         messages: [
-          { role: 'system', content: 'You are Pandit Shivananda, a wise and experienced Hindu Brahmin pandit. Address users warmly as Vatsa. Answer questions about vrats, puja vidhi, mantras, muhurat and Hindu traditions with authenticity and warmth. Sprinkle Sanskrit words naturally.' },
-          ...messages
+          { role: 'system', content: systemPrompt },
+          ...messages,
         ],
         max_tokens: 600,
         temperature: 0.7,
@@ -30,9 +59,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     const data = await response.json();
     const reply = data.choices?.[0]?.message?.content || 'Pranam! Please try again.';
-    return new Response(JSON.stringify({ reply }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-
-  } catch (error) {
+    return new Response(JSON.stringify({ reply }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch {
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
   }
 };

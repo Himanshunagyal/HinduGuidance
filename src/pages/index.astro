@@ -111,63 +111,6 @@ const homepageSchema = {
     </div>
   </section>
 
-  <!-- TODAY'S PANCHANG -->
-  <section class="max-w-6xl mx-auto px-4 py-14">
-    <div class="text-center mb-8">
-      <p class="text-saffron-600 font-sans text-xs tracking-widest uppercase mb-2">Daily Panchang</p>
-      <h2 class="font-display text-4xl text-darkbrown font-semibold">Today's Panchang</h2>
-      <p class="text-darkbrown/50 font-sans text-sm mt-1">{today}</p>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      {[
-        { label: "Tithi", value: todayPanchang.tithi, icon: "🌙" },
-        { label: "Nakshatra", value: todayPanchang.nakshatra, icon: "⭐" },
-        { label: "Yoga", value: todayPanchang.yoga, icon: "🔯" },
-        { label: "Karana", value: todayPanchang.karana, icon: "📿" },
-      ].map(item => (
-        <div class="card-sacred p-4 text-center">
-          <span class="text-2xl block mb-2">{item.icon}</span>
-          <p class="text-xs font-sans text-saffron-600 uppercase tracking-wide mb-1">{item.label}</p>
-          <p class="font-display text-darkbrown font-semibold text-sm leading-snug">{item.value}</p>
-        </div>
-      ))}
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {[
-        { label: "Sunrise", value: todayPanchang.sunrise, icon: "🌅" },
-        { label: "Sunset", value: todayPanchang.sunset, icon: "🌇" },
-        { label: "Rahu Kalam", value: todayPanchang.rahuKalam, icon: "⚠️" },
-        { label: "Abhijit Muhurat", value: todayPanchang.abhijitMuhurat, icon: "✨" },
-      ].map(item => (
-        <div class={`card-sacred p-4 text-center ${item.label === 'Rahu Kalam' ? 'border border-red-100 bg-red-50/30' : ''}`}>
-          <span class="text-2xl block mb-2">{item.icon}</span>
-          <p class={`text-xs font-sans uppercase tracking-wide mb-1 ${item.label === 'Rahu Kalam' ? 'text-red-500' : 'text-saffron-600'}`}>{item.label}</p>
-          <p class="font-display text-darkbrown font-semibold text-sm leading-snug">{item.value}</p>
-        </div>
-      ))}
-    </div>
-
-    <p class="text-center text-xs text-darkbrown/40 font-sans mt-4">Timings are approximate. Verify with your local panchangam for exact values.</p>
-  </section>
-
-  <!-- TODAY'S MANTRA -->
-  <section class="bg-gradient-to-br from-darkbrown to-deepred py-14">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Today's Recommended</p>
-      <h2 class="font-display text-3xl text-cream font-semibold mb-6">Daily Mantra</h2>
-      <div class="bg-white/5 border border-gold/20 rounded-sm p-8">
-        <p class="text-gold/70 font-sans text-xs mb-3">Deity: {todayMantra.deity}</p>
-        <p class="sanskrit text-5xl text-gold mb-4 leading-relaxed">{todayMantra.mantra}</p>
-        <p class="text-cream/60 font-body italic text-lg mb-5">{todayMantra.transliteration}</p>
-        <div class="w-16 h-px bg-gold/30 mx-auto mb-5"></div>
-        <p class="text-cream/70 font-body text-sm leading-relaxed max-w-lg mx-auto">{todayMantra.benefit}</p>
-      </div>
-      <a href="/pandit" class="inline-block mt-6 text-gold/70 font-sans text-sm hover:text-gold">Ask Panditji about this mantra →</a>
-    </div>
-  </section>
-
   <!-- UPCOMING FESTIVALS -->
   <section class="max-w-6xl mx-auto px-4 py-14">
     <div class="flex justify-between items-end mb-8">
@@ -190,7 +133,25 @@ const homepageSchema = {
         </div>
       ))}
     </div>
+  </section>;
+
+  <!-- TODAY'S MANTRA -->
+  <section class="bg-gradient-to-br from-darkbrown to-deepred py-14">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <p class="text-gold/60 font-sans text-xs tracking-widest uppercase mb-3">Today's Recommended</p>
+      <h2 class="font-display text-3xl text-cream font-semibold mb-6">Daily Mantra</h2>
+      <div class="bg-white/5 border border-gold/20 rounded-sm p-8">
+        <p class="text-gold/70 font-sans text-xs mb-3">Deity: {todayMantra.deity}</p>
+        <p class="sanskrit text-5xl text-gold mb-4 leading-relaxed">{todayMantra.mantra}</p>
+        <p class="text-cream/60 font-body italic text-lg mb-5">{todayMantra.transliteration}</p>
+        <div class="w-16 h-px bg-gold/30 mx-auto mb-5"></div>
+        <p class="text-cream/70 font-body text-sm leading-relaxed max-w-lg mx-auto">{todayMantra.benefit}</p>
+      </div>
+      <a href="/pandit" class="inline-block mt-6 text-gold/70 font-sans text-sm hover:text-gold">Ask Panditji about this mantra →</a>
+    </div>
   </section>
+
+
 
   <!-- WHAT IS PANCHANG -->
   <section class="bg-saffron-50/40 py-14">
