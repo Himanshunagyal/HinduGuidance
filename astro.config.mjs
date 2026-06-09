@@ -29,7 +29,7 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://panchangseva.in',
+  site: 'https://panchang-sooty.vercel.app',
   integrations: [react(), sitemap()],
   output: 'server',
   adapter: vercel(),
