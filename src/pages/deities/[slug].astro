@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { deities } from '../../content/deities/data';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return deities.map(d => ({ params: { slug: d.slug }, props: { deity: d } }));
+}
+
+const { deity: d } = Astro.props;
+
+// Schema.org markup for deity page
+const deitySchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": d.name,
+  "alternateName": d.alsoKnownAs,
+  "description": d.shortDesc,
+  "image": `https://hindupad.com/images/deities/${d.slug}.jpg`,
+  "gender": d.slug.includes("goddess") ? "Female" : "Male"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hindupad.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Hindu Gods & Goddesses", "item": "https://hindupad.com/deities" },
+    { "@type": "ListItem", "position": 3, "name": d.name, "item": `https://hindupad.com/deities/${d.slug}` }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": d.faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  }))
+};
+---
+
+<BaseLayout
+  title={`${d.name} – The ${d.deityType} | Stories, Mantras, Festivals & Worship`}
+  description={d.shortDesc}
+  keywords={`${d.name}, ${d.alsoKnownAs.join(', ')}, ${d.deityType.toLowerCase()}, stories of ${d.name.split(' ')[1] || d.name.split(' ')[0].toLowerCase()}, ${d.name.toLowerCase()} mantras, ${d.name.toLowerCase()} aarti, ${d.name.toLowerCase()} temples, Hindu gods`}
+  schema={[deitySchema, breadcrumbSchema, faqSchema]}
+>
+  <Header />
+
+  <div class="max-w-5xl mx-auto px-4 pt-6 pb-2">
+    <nav class="text-xs font-sans text-darkbrown/50 flex items-center gap-2">
+      <a href="/" class="hover:text-saffron-600">Home</a>
+      <span>›</span>
+      <a href="/deities" class="hover:text-saffron-600">Gods & Goddesses</a>
+      <span>›</span>
+      <span class="text-darkbrown/80">{d.name}</span>
+    </nav>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+
+    <!-- Hero Section -->
+    <div class="flex flex-col md:flex-row gap-6 items-start mb-10">
+      <div class="text-center md:text-left">
+        <span class="text-7xl md:text-8xl block mb-3">{d.icon}</span>
+      </div>
+      <div class="flex-1">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+          <h1 class="font-display text-3xl md:text-5xl text-darkbrown font-semibold">{d.name}</h1>
+          <span class="text-xs bg-saffron-100 text-saffron-700 px-3 py-1 rounded-full">{d.deityType}</span>
+        </div>
+        <p class="text-saffron-600 font-sans text-sm mb-2">
+          Also known as: <span class="text-darkbrown/60">{d.alsoKnownAs.join(', ')}</span>
+        </p>
+        <p class="text-darkbrown/70 font-body text-lg leading-relaxed">
+          {d.shortDesc}
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Info Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+      <div class="card-sacred p-3 text-center">
+        <p class="text-xs text-saffron-600 font-sans uppercase tracking-wide mb-1">Consort</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{d.consort || "None"}</p>
+      </div>
+      <div class="card-sacred p-3 text-center">
+        <p class="text-xs text-saffron-600 font-sans uppercase tracking-wide mb-1">Abode</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{d.abode}</p>
+      </div>
+      <div class="card-sacred p-3 text-center">
+        <p class="text-xs text-saffron-600 font-sans uppercase tracking-wide mb-1">Vehicle</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{d.vehicle}</p>
+      </div>
+      <div class="card-sacred p-3 text-center">
+        <p class="text-xs text-saffron-600 font-sans uppercase tracking-wide mb-1">Weapon</p>
+        <p class="font-display text-darkbrown font-semibold text-sm">{d.weapon || "None (peaceful)"}</p>
+      </div>
+    </div>
+
+    <!-- Main Description -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">📖</span>
+        <h2 class="font-display text-2xl text-darkbrown font-semibold">Who is {d.name.split(' ')[1] || d.name.split(' ')[0]}?</h2>
+      </div>
+      <div class="card-sacred p-6 bg-saffron-50/20">
+        <p class="text-darkbrown/75 font-body text-base leading-relaxed whitespace-pre-line">
+          {d.description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Stories Section -->
+    {d.stories && d.stories.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">📿</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Sacred Stories</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          {d.stories.map((story, idx) => (
+            <div class="card-sacred p-5 hover:border-saffron-300 transition-colors">
+              <div class="flex items-start gap-3">
+                <span class="text-saffron-600 font-bold text-sm bg-saffron-100 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {idx + 1}
+                </span>
+                <div>
+                  <h3 class="font-display text-darkbrown font-semibold text-lg mb-2">{story.title}</h3>
+                  <p class="text-darkbrown/65 font-body text-sm leading-relaxed">{story.summary}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Symbols & Attributes -->
+    <!-- Symbols & Attributes -->
+<div class="grid md:grid-cols-2 gap-6 mb-10">
+  <div class="card-sacred p-5">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-2xl">🔱</span>
+      <h3 class="font-display text-darkbrown font-semibold text-lg">Symbols & Attributes</h3>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {Array.isArray(d.symbol) 
+        ? d.symbol.map(sym => (
+            <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">{sym}</span>
+          ))
+        : typeof d.symbol === 'string' 
+          ? d.symbol.split(',').map(sym => (
+              <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">{sym.trim()}</span>
+            ))
+          : <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">Not specified</span>
+      }
+    </div>
+  </div>
+  <div class="card-sacred p-5">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-2xl">🎨</span>
+      <h3 class="font-display text-darkbrown font-semibold text-lg">Sacred Colors</h3>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {Array.isArray(d.colors) 
+        ? d.colors.map(color => (
+            <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">{color}</span>
+          ))
+        : typeof d.colors === 'string'
+          ? d.colors.split(',').map(color => (
+              <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">{color.trim()}</span>
+            ))
+          : <span class="px-3 py-1 bg-saffron-50 text-darkbrown/70 text-xs rounded-full">Not specified</span>
+      }
+    </div>
+  </div>
+</div>
+
+    <!-- Favorite Offerings -->
+    <!-- Favorite Offerings -->
+<div class="card-sacred p-5 mb-10 bg-saffron-50/30">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="text-2xl">🌼</span>
+    <h3 class="font-display text-darkbrown font-semibold text-lg">What {d.name.split(' ')[1] || d.name.split(' ')[0]} Loves</h3>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    {Array.isArray(d.favoriteOfferings) 
+      ? d.favoriteOfferings.map(offering => (
+          <span class="px-3 py-1.5 bg-white border border-saffron-200 text-darkbrown/70 text-sm rounded-full">{offering}</span>
+        ))
+      : typeof d.favoriteOfferings === 'string'
+        ? d.favoriteOfferings.split(',').map(offering => (
+            <span class="px-3 py-1.5 bg-white border border-saffron-200 text-darkbrown/70 text-sm rounded-full">{offering.trim()}</span>
+          ))
+        : <span class="px-3 py-1.5 bg-white border border-saffron-200 text-darkbrown/70 text-sm rounded-full">Offer with love</span>
+    }
+  </div>
+  <p class="text-darkbrown/50 text-xs mt-3 italic">Simple offerings with sincere devotion matter more than expensive ones.</p>
+</div>
+
+    <!-- Mantras Section -->
+    {d.mantras && d.mantras.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🔊</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Sacred Mantras</h2>
+        </div>
+        <div class="space-y-4">
+          {d.mantras.map((mantra, idx) => (
+            <div class="card-sacred p-5">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-2">
+                <h3 class="font-display text-darkbrown font-semibold text-lg">{mantra.name}</h3>
+              </div>
+              <p class="font-mono text-saffron-700 text-base md:text-lg mb-2 bg-saffron-50 p-3 rounded-sm break-all">
+                {mantra.sanskrit}
+              </p>
+              <p class="text-darkbrown/65 font-body text-sm leading-relaxed">{mantra.benefit}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Festivals Section -->
+    {d.festivals && d.festivals.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🎉</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Festivals & Auspicious Days</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {d.festivals.map(fest => (
+            <div class="card-sacred p-4 flex items-center gap-3">
+              <span class="text-2xl">📅</span>
+              <div>
+                <h3 class="font-display text-darkbrown font-semibold">{fest.name}</h3>
+                <p class="text-darkbrown/55 text-xs font-body">{fest.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Famous Temples -->
+    {d.temples && d.temples.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">🛕</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Famous Temples</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {d.temples.map(temple => (
+            <div class="card-sacred p-4 flex items-center gap-3">
+              <span class="text-xl">📍</span>
+              <div>
+                <h3 class="font-display text-darkbrown font-semibold text-sm">{temple.name}</h3>
+                <p class="text-darkbrown/55 text-xs font-body">{temple.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Spiritual Lesson / Takeaway -->
+    <div class="card-sacred p-6 mb-10 bg-gradient-to-r from-saffron-50/50 to-transparent border-l-4 border-l-saffron-500">
+      <div class="flex items-start gap-3">
+        <span class="text-3xl">🕉️</span>
+        <div>
+          <h3 class="font-display text-darkbrown font-semibold text-lg mb-2">What {d.name.split(' ')[1] || d.name.split(' ')[0]} Teaches Us</h3>
+          <p class="text-darkbrown/65 font-body text-base leading-relaxed italic">
+            {d.slug === "who-is-lord-shiva" && "That destruction isn't always bad. Sometimes, things need to fall apart so better things can come together. And that the most powerful being in the universe is also the simplest — ash on his skin, a tiger skin to sit on, and a heart big enough for everyone."}
+            {d.slug === "who-is-lord-vishnu" && "That you don't always need to interfere. Sometimes, letting things play out is wisdom. But when things go really wrong — show up. And that preservation isn't passive. It's active, loving, and protective."}
+            {d.slug === "who-is-lord-krishna" && "That life isn't just serious. It's also playful. That you can be a warrior, a philosopher, a friend, a lover — all at once. And that the Bhagavad Gita isn't a book. It's a conversation happening inside you every day."}
+            {d.slug === "who-is-hanuman" && "That the greatest strength isn't in your muscles. It's in your devotion. When you love something more than yourself, you become capable of things you never imagined — like jumping over oceans or carrying mountains."}
+            {d.slug === "who-is-ganesha" && "That wisdom isn't about speed. It's about patience. The mouse is fast, but Ganesha rides it — controlling it. That's the lesson. Your desires are fast. Make sure you're the one controlling them, not the other way around."}
+            {d.slug === "who-is-goddess-lakshmi" && "That wealth isn't just money. It's everything good. And it stays where it's respected. Clean your home. Clean your heart. She'll come."}
+            {d.slug === "who-is-goddess-durga" && "That you have a warrior inside you. You might not see it. But when life pushes you, she'll show up. Just like Durga showed up when the gods needed her."}
+            {d.slug === "who-is-saraswati" && "That knowledge is quiet. It doesn't announce itself. But it changes everything. A silent mind, a white swan, a veena playing somewhere — that's Saraswati. And she's always with you when you learn."}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    {d.faq && d.faq.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-3xl">❓</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Questions About {d.name.split(' ')[1] || d.name.split(' ')[0]}</h2>
+        </div>
+        <div class="space-y-4">
+          {d.faq.map((item, idx) => (
+            <div class="card-sacred p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-saffron-600 font-bold text-sm bg-saffron-100 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {idx + 1}
+                </span>
+                <div>
+                  <h3 class="font-display text-lg text-darkbrown font-semibold mb-2">{item.q}</h3>
+                  <p class="font-body text-darkbrown/70 text-sm leading-relaxed">{item.a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Related Pages -->
+    {d.relatedPages && d.relatedPages.length > 0 && (
+      <div class="mb-10">
+        <div class="divider-om mb-6"></div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-2xl">🔗</span>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold">Explore More</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {d.relatedPages.map((page) => (
+            <a
+              href={page.external ? page.slug : (page.slug.startsWith('/') ? page.slug : `/${page.slug}`)}
+              class="card-sacred p-4 flex items-center gap-3 hover:border-saffron-400 hover:bg-saffron-50 transition-colors group"
+            >
+              <span class="text-2xl">{page.icon}</span>
+              <span class="font-display text-darkbrown text-sm font-medium group-hover:text-saffron-700 leading-tight">
+                {page.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Call to Action - Ask Pandit -->
+    <div class="border border-saffron-200 bg-saffron-50/50 rounded-sm p-6 flex flex-col md:flex-row items-center gap-5">
+      <span class="text-4xl">🙏</span>
+      <div class="flex-1 text-center md:text-left">
+        <h3 class="font-display text-xl text-darkbrown font-semibold mb-1">Still have questions about {d.name}?</h3>
+        <p class="text-sm text-darkbrown/60 font-body">Ask Pandit Shivananda for deeper spiritual guidance and clarification.</p>
+      </div>
+      <a href="/pandit" class="bg-saffron-600 text-white font-sans text-sm font-medium px-5 py-2.5 rounded-sm hover:bg-saffron-700 transition-colors whitespace-nowrap">
+        Ask Panditji →
+      </a>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .card-sacred {
+    background: white;
+    border: 1px solid #f0e6d2;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .card-sacred:hover {
+    border-color: #D4A574;
+  }
+  
+  .whitespace-pre-line {
+    white-space: pre-line;
+  }
+  
+  .break-all {
+    word-break: break-all;
+  }
+</style>

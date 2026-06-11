@@ -29,7 +29,7 @@ const homepageSchema = {
   "@type": "WebPage",
   "name": "PanchangSeva - Hindu Vrat Calendar, Muhurat & AI Pandit",
   "description": "Find Vrat dates, auspicious Muhurat timings, Today's Panchang and get answers from our AI Pandit.",
-  "url": "https://panchangseva.in"
+  "url": "https://panchang-sooty.vercel.app/"
 };
 ---
 
@@ -206,6 +206,178 @@ const homepageSchema = {
           <p class="mt-4 text-saffron-600 text-sm font-sans font-medium">Explore →</p>
         </a>
       ))}
+    </div>
+  </section>
+
+     <!-- MEET THE DIVINE SECTION -->
+  <section class="py-14 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30 pointer-events-none">
+      <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-saffron-200/30 blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-gold-100/20 blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 bg-saffron-100 px-4 py-1.5 rounded-full mb-4">
+          <span class="text-sm">🕉️</span>
+          <span class="text-xs font-sans text-saffron-700 uppercase tracking-wider">Sanatana Dharma</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold mb-4">
+          Meet the Divine<br/>
+          <span class="text-gold">Gods & Goddesses</span> of Hinduism
+        </h2>
+        <p class="text-darkbrown/60 font-body text-lg max-w-2xl mx-auto">
+          They're not distant figures in ancient stories. They're family — fierce mothers, playful children, 
+          wise teachers, and loyal protectors. Each one has a story that can change how you see the world.
+        </p>
+      </div>
+
+      <!-- Deities Grid - 8 Featured Deities with Image Backgrounds -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <!-- Lord Shiva Card -->
+        <a href="/deities/who-is-lord-shiva" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lord_Shiva_Statue_%28cropped%29.jpg/800px-Lord_Shiva_Statue_%28cropped%29.jpg'); background-position: center 20%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🔱</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Shiva</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Destroyer & Liberator</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The ash-smeared yogi on Mount Kailash — the easiest god to please.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Lord Vishnu Card -->
+        <a href="/deities/who-is-lord-vishnu" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Lord_Vishnu.jpg/800px-Lord_Vishnu.jpg'); background-position: center 30%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🕉️</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Vishnu</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Preserver</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The peaceful one who rests on the cosmic ocean and appears when the world needs him.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Lord Krishna Card -->
+        <a href="/deities/who-is-lord-krishna" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Krishna_with_flute.jpg/800px-Krishna_with_flute.jpg'); background-position: center 25%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🦚</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Krishna</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Divine Statesman</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The butter thief, the flute player, the giver of the Bhagavad Gita — everyone's favorite.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Lord Rama Card -->
+        <a href="/deities/who-is-lord-rama" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Lord_Rama_with_arrows.jpg/800px-Lord_Rama_with_arrows.jpg'); background-position: center 20%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🏹</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Rama</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Perfect Man</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The prince who chose dharma over everything — even love. The hero of the Ramayana.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <!-- Lord Hanuman Card -->
+        <a href="/deities/who-is-hanuman" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Hanuman_Statue.jpg/800px-Hanuman_Statue.jpg'); background-position: center 20%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🐒</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Hanuman</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Devoted Servant</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The one you call when you're scared. Faith, strength, and courage personified.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Lord Ganesha Card -->
+        <a href="/deities/who-is-ganesha" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Ganesh_Statue.jpg/800px-Ganesh_Statue.jpg'); background-position: center 20%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🐘</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Lord Ganesha</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Remover of Obstacles</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The first one you pray to before anything new. Wisdom, patience, and kindness.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Goddess Lakshmi Card -->
+        <a href="/deities/who-is-goddess-lakshmi" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Goddess_Lakshmi.jpg/800px-Goddess_Lakshmi.jpg'); background-position: center 25%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">🌺</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Goddess Lakshmi</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Goddess of Abundance</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">Wealth, fortune, and everything good — she visits the cleanest heart first.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+
+        <!-- Goddess Durga Card -->
+        <a href="/deities/who-is-goddess-durga" class="group relative block rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="height: 280px;">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Goddess_Durga.jpg/800px-Goddess_Durga.jpg'); background-position: center 30%;"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkbrown/90 via-darkbrown/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <div class="text-5xl mb-2 drop-shadow-lg">⚔️</div>
+            <h3 class="font-display text-xl text-cream font-semibold group-hover:text-gold transition-colors">Goddess Durga</h3>
+            <p class="text-cream/70 text-xs font-sans mt-1">The Warrior Goddess</p>
+            <div class="w-12 h-px bg-gold/40 mx-auto my-2"></div>
+            <p class="text-cream/60 text-xs font-body line-clamp-2">The one the gods created when no one else could defeat the demon. Fierce mother.</p>
+            <span class="inline-block mt-2 text-gold text-xs font-sans opacity-0 group-hover:opacity-100 transition-opacity">Discover →</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Story Card - Deeper Connection -->
+      <div class="card-sacred p-6 md:p-8 bg-gradient-to-r from-saffron-50/40 to-transparent border-l-4 border-l-saffron-500 mb-8">
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="text-4xl md:text-5xl bg-saffron-100 w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">📖</div>
+          <div>
+            <h3 class="font-display text-xl md:text-2xl text-darkbrown font-semibold mb-2">Why do Hindu gods have so many forms?</h3>
+            <p class="text-darkbrown/65 font-body text-base leading-relaxed mb-3">
+              My grandmother used to say — "The divine is like water. In a river, it flows. In an ocean, it's vast. 
+              In a cup, it's small. Same water, different containers." That's why we have so many deities. 
+              One divine reality, appearing in forms we can relate to — a father, a mother, a child, a warrior, 
+              a lover. Whatever your heart needs, there's a form for that.
+            </p>
+            <p class="text-darkbrown/50 font-body text-sm italic">
+              — Every Hindu grandmother, probably
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="text-center">
+        <a href="/deities" class="inline-flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-saffron-600 text-white font-sans font-medium px-6 py-3 rounded-sm shadow-lg hover:shadow-saffron-400/30 transition-all hover:-translate-y-0.5">
+          Explore All Deities
+          <span class="text-lg">→</span>
+        </a>
+        <p class="mt-3 text-xs text-darkbrown/40 font-sans">
+          8+ deities • Their stories • Sacred mantras • 50+ FAQs answered
+        </p>
+      </div>
     </div>
   </section>
 

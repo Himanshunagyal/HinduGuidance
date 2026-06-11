@@ -1,0 +1,339 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { deities } from '../../content/deities/data';
+
+export const prerender = true;
+
+// Group deities by category (based on deityType)
+const hinduTrinity = deities.filter(d => d.slug === "who-is-lord-shiva" || d.slug === "who-is-lord-vishnu" || d.slug === "who-is-lord-krishna");
+const goddesses = deities.filter(d => d.slug === "who-is-goddess-lakshmi" || d.slug === "who-is-goddess-durga" || d.slug === "who-is-saraswati");
+const others = deities.filter(d => d.slug === "who-is-hanuman" || d.slug === "who-is-ganesha");
+
+const allKeywords = [...new Set(deities.flatMap(d => [d.name, ...d.alsoKnownAs]))].slice(0, 15).join(', ');
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hindupad.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Hindu Gods & Goddesses", "item": "https://hindupad.com/deities" }
+  ]
+};
+
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Hindu Gods and Goddesses – Complete Guide",
+  "description": "Discover the stories, mantras, festivals, and significance of Hindu deities — Shiva, Vishnu, Krishna, Hanuman, Lakshmi, Durga, Ganesha, Saraswati.",
+  "url": "https://hindupad.com/deities"
+};
+---
+
+<BaseLayout
+  title="Hindu Gods and Goddesses – Complete Guide to Hindu Deities"
+  description="Meet the divine beings of Hinduism — Shiva, Vishnu, Krishna, Hanuman, Lakshmi, Durga, Ganesha, Saraswati. Discover their stories, mantras, festivals, and how to worship them."
+  keywords={allKeywords}
+  schema={[breadcrumbSchema, collectionPageSchema]}
+>
+  <Header />
+
+  <div class="max-w-6xl mx-auto px-4 pt-6 pb-2">
+    <nav class="text-xs font-sans text-darkbrown/50 flex items-center gap-2">
+      <a href="/" class="hover:text-saffron-600">Home</a>
+      <span>›</span>
+      <span class="text-darkbrown/80">Hindu Gods & Goddesses</span>
+    </nav>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <span class="text-7xl mb-4 inline-block">🕉️</span>
+      <h1 class="font-display text-4xl md:text-5xl text-darkbrown font-semibold mb-4">
+        Hindu Gods & Goddesses
+      </h1>
+      <p class="text-darkbrown/65 font-body text-lg max-w-3xl mx-auto leading-relaxed">
+        The divine beings of Sanatana Dharma aren't distant, scary figures sitting on clouds. 
+        They're family — fierce mothers, playful children, loving brothers, wise teachers. 
+        Each one has a story. Each one has something to teach. 
+        <strong class="text-saffron-700">Come, meet them.</strong>
+      </p>
+      <div class="inline-flex items-center gap-3 mt-6 bg-saffron-50/80 px-5 py-2.5 rounded-full">
+        <span class="text-saffron-600 text-sm font-medium">{deities.length} Divine Guides</span>
+        <span class="text-darkbrown/30">•</span>
+        <span class="text-saffron-600 text-sm font-medium">Thousands of Years of Wisdom</span>
+        <span class="text-darkbrown/30">•</span>
+        <span class="text-saffron-600 text-sm font-medium">Stories That Transform</span>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Pills -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12 pb-4 border-b border-saffron-100">
+      <a href="#trimurti" class="px-4 py-2 bg-saffron-50 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-100 transition-colors">🔱 Trimurti</a>
+      <a href="#goddesses" class="px-4 py-2 bg-saffron-50 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-100 transition-colors">🌺 Goddesses</a>
+      <a href="#beloved" class="px-4 py-2 bg-saffron-50 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-100 transition-colors">🐒 Most Beloved</a>
+      <a href="#all-deities" class="px-4 py-2 bg-saffron-50 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-100 transition-colors">📿 All Deities</a>
+    </div>
+
+    <!-- Introduction Story -->
+    <div class="card-sacred p-6 md:p-8 mb-12 bg-gradient-to-r from-saffron-50/40 to-transparent">
+      <div class="flex items-start gap-4">
+        <span class="text-4xl hidden md:block">🙏</span>
+        <div>
+          <p class="text-darkbrown/70 font-body text-base md:text-lg leading-relaxed mb-3">
+            "My grandmother never read about the gods from a book. She met them in her kitchen, 
+            in the temple down the lane, in the stories she told me before sleep. 
+            To her, Shiva wasn't a distant deity — he was the ash-smeared yogi who lived on Kailash 
+            and loved his devotees like his own children."
+          </p>
+          <p class="text-darkbrown/60 font-body text-sm italic">
+            — Every Hindu child's grandmother, probably
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIMURTI SECTION -->
+    <section id="trimurti" class="mb-16 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6 pb-3 border-b-2 border-saffron-200">
+        <span class="text-4xl">🔱</span>
+        <h2 class="font-display text-3xl text-darkbrown font-semibold">The Trimurti</h2>
+        <span class="text-saffron-600 text-sm bg-saffron-50 px-2 py-0.5 rounded-full ml-2">The Supreme Trio</span>
+      </div>
+      <p class="text-darkbrown/60 font-body mb-8 max-w-3xl">
+        Three gods. Three cosmic functions. One reality. Brahma creates, Vishnu preserves, Shiva destroys — 
+        but destruction here means transformation. Like how winter destroys leaves so spring can grow new ones.
+      </p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {hinduTrinity.map((deity) => (
+          <a 
+            href={`/deities/${deity.slug}`}
+            class="group block card-sacred p-6 hover:border-saffron-400 hover:bg-saffron-50/20 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <span class="text-5xl group-hover:scale-110 transition-transform duration-300">{deity.icon}</span>
+              <div>
+                <h3 class="font-display text-xl text-darkbrown font-semibold group-hover:text-saffron-700 transition-colors">
+                  {deity.name}
+                </h3>
+                <p class="text-xs text-saffron-600 font-sans mt-0.5 mb-2">{deity.deityType}</p>
+                <p class="text-darkbrown/60 font-body text-sm line-clamp-3">
+                  {deity.shortDesc.substring(0, 120)}...
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-saffron-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>Meet {deity.name.split(' ')[1] || deity.name.split(' ')[0]}</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- GODDESSES SECTION -->
+    <section id="goddesses" class="mb-16 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6 pb-3 border-b-2 border-saffron-200">
+        <span class="text-4xl">🌺</span>
+        <h2 class="font-display text-3xl text-darkbrown font-semibold">The Divine Feminine</h2>
+        <span class="text-saffron-600 text-sm bg-saffron-50 px-2 py-0.5 rounded-full ml-2">Shakti — The Supreme Energy</span>
+      </div>
+      <p class="text-darkbrown/60 font-body mb-8 max-w-3xl">
+        In Hinduism, the divine isn't just male. The Goddess is everything — knowledge, wealth, power, love. 
+        She's the energy that makes the gods act. Without her, they're nothing.
+      </p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {goddesses.map((deity) => (
+          <a 
+            href={`/deities/${deity.slug}`}
+            class="group block card-sacred p-6 hover:border-saffron-400 hover:bg-saffron-50/20 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <span class="text-5xl group-hover:scale-110 transition-transform duration-300">{deity.icon}</span>
+              <div>
+                <h3 class="font-display text-xl text-darkbrown font-semibold group-hover:text-saffron-700 transition-colors">
+                  {deity.name}
+                </h3>
+                <p class="text-xs text-saffron-600 font-sans mt-0.5 mb-2">{deity.deityType}</p>
+                <p class="text-darkbrown/60 font-body text-sm line-clamp-3">
+                  {deity.shortDesc.substring(0, 120)}...
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-saffron-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>Meet {deity.name.split(' ')[1] || deity.name.split(' ')[0]}</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- MOST BELOVED SECTION -->
+    <section id="beloved" class="mb-16 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6 pb-3 border-b-2 border-saffron-200">
+        <span class="text-4xl">❤️</span>
+        <h2 class="font-display text-3xl text-darkbrown font-semibold">The Most Beloved</h2>
+        <span class="text-saffron-600 text-sm bg-saffron-50 px-2 py-0.5 rounded-full ml-2">Everyone's Favorites</span>
+      </div>
+      <p class="text-darkbrown/60 font-body mb-8 max-w-3xl">
+        Every Hindu has a favorite. Ganesha — the one you call before anything new. Hanuman — the one you call when you're scared. 
+        Krishna — the one you just... love. These two are at the heart of every home.
+      </p>
+      <div class="grid md:grid-cols-2 gap-6">
+        {others.map((deity) => (
+          <a 
+            href={`/deities/${deity.slug}`}
+            class="group block card-sacred p-6 hover:border-saffron-400 hover:bg-saffron-50/20 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <span class="text-5xl group-hover:scale-110 transition-transform duration-300">{deity.icon}</span>
+              <div>
+                <h3 class="font-display text-xl text-darkbrown font-semibold group-hover:text-saffron-700 transition-colors">
+                  {deity.name}
+                </h3>
+                <p class="text-xs text-saffron-600 font-sans mt-0.5 mb-2">{deity.deityType}</p>
+                <p class="text-darkbrown/60 font-body text-sm line-clamp-3">
+                  {deity.shortDesc.substring(0, 140)}...
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-saffron-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>Meet {deity.name.split(' ')[1] || deity.name.split(' ')[0]}</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- ALL DEITIES GRID -->
+    <section id="all-deities" class="mb-16 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6 pb-3 border-b-2 border-saffron-200">
+        <span class="text-4xl">📿</span>
+        <h2 class="font-display text-3xl text-darkbrown font-semibold">Meet All Deities</h2>
+        <span class="text-saffron-600 text-sm bg-saffron-50 px-2 py-0.5 rounded-full ml-2">{deities.length} Divine Guides</span>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {deities.map((deity) => (
+          <a 
+            href={`/deities/${deity.slug}`}
+            class="group flex items-center gap-3 card-sacred p-4 hover:border-saffron-400 hover:bg-saffron-50/20 transition-all duration-300"
+          >
+            <span class="text-3xl group-hover:scale-110 transition-transform duration-300">{deity.icon}</span>
+            <div>
+              <h3 class="font-display text-darkbrown font-semibold text-base group-hover:text-saffron-700 transition-colors">
+                {deity.name}
+              </h3>
+              <p class="text-darkbrown/50 text-xs font-body">{deity.deityType.split('(')[0].trim()}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Why Learn About Deities Section -->
+    <div class="card-sacred p-6 md:p-8 mb-12 bg-saffron-50/30">
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+        <span class="text-5xl">🪷</span>
+        <div>
+          <h2 class="font-display text-2xl text-darkbrown font-semibold mb-3">Why learn about Hindu Gods & Goddesses?</h2>
+          <p class="text-darkbrown/65 font-body text-base leading-relaxed mb-3">
+            Because their stories aren't just mythology. They're psychology, philosophy, and life advice — 
+            wrapped in beautiful tales that have survived thousands of years.
+          </p>
+          <p class="text-darkbrown/65 font-body text-base leading-relaxed">
+            When Ganesha breaks his tusk to write the Mahabharata, he's teaching you about sacrifice. 
+            When Hanuman tears open his chest to show Rama inside, he's teaching you about devotion. 
+            When Durga rides her lion into battle, she's teaching you about courage.
+          </p>
+          <div class="mt-4 pt-3 border-t border-saffron-200">
+            <p class="text-darkbrown/50 font-body text-sm italic">
+              "The gods are not somewhere else. They're inside you. Waiting."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Comparison / Fun Facts -->
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="card-sacred p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">⚡</span>
+          <h3 class="font-display text-darkbrown font-semibold text-lg">Did You Know?</h3>
+        </div>
+        <ul class="space-y-2">
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">•</span> Shiva isn't just "The Destroyer" — he's also the most compassionate. He drinks poison so others don't have to.</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">•</span> Vishnu has 10 main avatars — from a fish to a Buddha to a king who'll come at the end of time.</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">•</span> Hanuman is still alive, according to tradition. Yes, right now. Somewhere.</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">•</span> Lakshmi rides an owl — because wealth without wisdom is blind.</li>
+        </ul>
+      </div>
+      <div class="card-sacred p-5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🎯</span>
+          <h3 class="font-display text-darkbrown font-semibold text-lg">Which Deity Should You Pray To?</h3>
+        </div>
+        <ul class="space-y-2">
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">📚</span> Studying? → Saraswati</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">🚗</span> Starting something new? → Ganesha</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">😰</span> Scared or stuck? → Hanuman</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">💰</span> Need prosperity? → Lakshmi</li>
+          <li class="text-darkbrown/65 font-body text-sm flex gap-2"><span class="text-saffron-600">🤔</span> Confused about life? → Krishna (read the Gita)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related Pages / Explore More -->
+    <div class="border-t border-saffron-200 pt-8">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h3 class="font-display text-darkbrown font-semibold text-lg">Explore More</h3>
+          <p class="text-darkbrown/50 text-sm">Deepen your spiritual journey</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/mantras" class="px-4 py-2 bg-saffron-600 text-white text-sm font-medium rounded-full hover:bg-saffron-700 transition-colors">
+            📿 Explore Mantras
+          </a>
+          <a href="/festivals" class="px-4 py-2 border border-saffron-400 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-50 transition-colors">
+            🎉 Upcoming Festivals
+          </a>
+          <a href="/questions" class="px-4 py-2 border border-saffron-400 text-saffron-700 text-sm font-medium rounded-full hover:bg-saffron-50 transition-colors">
+            ❓ Hindu Q&A
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .card-sacred {
+    background: white;
+    border: 1px solid #f0e6d2;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .card-sacred:hover {
+    border-color: #D4A574;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+</style>
