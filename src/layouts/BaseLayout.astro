@@ -82,6 +82,29 @@ const fullTitle = title.includes('PanchangSeva') ? title : `${title} | PanchangS
 
   <!-- Google AdSense placeholder -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossorigin="anonymous"></script> -->
+  
+
+ 
+  <!-- Your existing meta tags -->
+
+  {import.meta.env.PUBLIC_GA_ID && (
+    <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}
+      ></script>
+
+      <script is:inline>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${import.meta.env.PUBLIC_GA_ID}');
+        `}
+      </script>
+    </>
+  )}
+
 </head>
 <body>
   <slot />
