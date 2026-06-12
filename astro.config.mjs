@@ -29,7 +29,7 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'hinduguidance.vercel.app',
+  site: 'https://hinduguidance.vercel.app',
   integrations: [react(), sitemap()],
   output: 'server',
   adapter: vercel(),
